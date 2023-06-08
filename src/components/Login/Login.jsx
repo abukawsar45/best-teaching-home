@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
   const [show, setShow] = useState(true)
@@ -76,8 +77,8 @@ const Login = () => {
                 <div className='flex flex-col w-full border-opacity-50'>
                   <div className='divider'></div>
                   <button>
-                    dsfdfs
-                    {/* <SocialLogin /> */}
+                    
+                    <SocialLogin />
                   </button>
                 </div>
               </div>
