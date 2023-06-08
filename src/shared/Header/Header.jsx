@@ -1,5 +1,55 @@
+import { Link } from "react-router-dom";
 
 const Header = () => {
+  // const user = true;
+  const user = false;
+
+  const navOptions = (
+    <>
+      {' '}
+      <li>
+        {' '}
+        <Link to='/'>Home</Link>
+      </li>
+      <li>
+        {' '}
+        <Link to='/instructor'>Instructor</Link>
+      </li>
+      <li>
+        {' '}
+        <Link to='/class'>Class</Link>
+      </li>
+      {user ? (
+        <>
+          {' '}
+          <li>
+            {' '}
+            <Link to='/dashboard'>Dashboard</Link>
+          </li>
+          <li>
+            {' '}
+            <Link to='/'>Logout</Link>
+          </li>
+          <li>
+            {' '}
+            <Link to='/'>Photo</Link>
+          </li>
+        </>
+      ) : (
+        <>
+          {' '}
+          <li>
+            {' '}
+            <Link to='/login'>Login</Link>
+          </li>
+          <li>
+            {' '}
+            <Link to='/register'>Register</Link>
+          </li>
+        </>
+      )}
+    </>
+  );
   return (
     <div>
       <div className='navbar bg-base-100'>
@@ -25,49 +75,14 @@ const Header = () => {
               tabIndex={0}
               className='menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className='p-2'>
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              {navOptions}
             </ul>
           </div>
-          <a className='btn btn-ghost normal-case text-xl'>daisyUI</a>
+          <img src='https://i.ibb.co/jGPdH9H/download.jpg' className="h-8 rounded" alt='Logo' />
+          <Link className='btn btn-ghost normal-case text-xl'>BTH</Link>
         </div>
         <div className='navbar-center hidden lg:flex'>
-          <ul className='menu menu-horizontal px-1'>
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li tabIndex={0}>
-              <details>
-                <summary>Parent</summary>
-                <ul className='p-2'>
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
+          <ul className='menu menu-horizontal px-1'>{navOptions}</ul>
         </div>
         <div className='navbar-end'>
           <a className='btn'>Button</a>
