@@ -1,13 +1,21 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import useProvider from '../../hooks/useProvider';
 
 const Login = () => {
   const [show, setShow] = useState(true)
   const [success, setSuccess] = useState('');
-  const [error,setError] = useState('')
+  const [error,setError] = useState('');
+  const {
+    loginWithEmail,
+  } = useProvider();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+  
 
    const {
     register,
@@ -15,8 +23,24 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-     console.log(data);
-  }
+    console.log(data);
+    loginWithEmail(data.email, data.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        setError('');
+        setSuccess('Login Successfully');
+        if (loggedUser) {
+         
+          console.log('login===39');
+          navigate(from, { replace: true });
+        }
+      })
+      .catch((error) => {
+        setSuccess('');
+        setError(error.message);
+      });
+  };
 
   return (
     <div>

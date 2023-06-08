@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import useProvider from "../../hooks/useProvider";
 
 const Header = () => {
-  // const user = true;
-  const user = false;
+
+  const {user, logOut } = useProvider();
+  console.log(user)
+   const handleLogOut = () => {
+     logOut().then().catch();
+   };
 
   const navOptions = (
     <>
@@ -28,11 +33,7 @@ const Header = () => {
           </li>
           <li>
             {' '}
-            <Link to='/'>Logout</Link>
-          </li>
-          <li>
-            {' '}
-            <Link to='/'>Photo</Link>
+            <button onClick={handleLogOut} to='/'>Logout</button>
           </li>
         </>
       ) : (
@@ -78,14 +79,24 @@ const Header = () => {
               {navOptions}
             </ul>
           </div>
-          <img src='https://i.ibb.co/jGPdH9H/download.jpg' className="h-8 rounded" alt='Logo' />
+          <img
+            src='https://i.ibb.co/jGPdH9H/download.jpg'
+            className='h-8 rounded'
+            alt='Logo'
+          />
           <Link className='btn btn-ghost normal-case text-xl'>BTH</Link>
         </div>
         <div className='navbar-center hidden lg:flex'>
           <ul className='menu menu-horizontal px-1'>{navOptions}</ul>
         </div>
         <div className='navbar-end'>
-          <a className='btn'>Button</a>
+          {user && (
+            <div className='avatar text-center w-10 online mr-2'>
+              <div className='w-10 rounded-full'>
+                <img src={user?.photoURL} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

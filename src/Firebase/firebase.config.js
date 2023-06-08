@@ -5,12 +5,12 @@ import { initializeApp } from 'firebase/app';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyAAcJLNyyEF8eb5Ih_7e_kcI7rMk-ncqx0',
-  authDomain: 'best-teaching-home.firebaseapp.com',
-  projectId: 'best-teaching-home',
-  storageBucket: 'best-teaching-home.appspot.com',
-  messagingSenderId: '609057399612',
-  appId: '1:609057399612:web:f17539bdaa5dbe07fbf439',
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
