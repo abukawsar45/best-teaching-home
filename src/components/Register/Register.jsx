@@ -27,7 +27,7 @@ const Register = () => {
   const onSubmit = (data) => {
       setSuccess('');
       setError('');
-    const saveData = { ...data, role: 'user' }
+    const saveData = { ...data, role: 'student' }
     if (data.password !== data.confirmPassword)
     {
     
