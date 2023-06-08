@@ -63,7 +63,10 @@ const Login = () => {
                     placeholder='email'
                     {...register('email', { required: true })}
                     className='input input-bordered'
-                  />
+                  />{' '}
+                  {errors.email && (
+                    <span className='text-red-600'>This field is required</span>
+                  )}
                 </div>
                 <div className='form-control '>
                   <label className='label'>
@@ -74,8 +77,14 @@ const Login = () => {
                     placeholder='password'
                     {...register('password', { required: true })}
                     className='input input-bordered'
-                  />
-                  <button className='mr-auto ml-2 mt-2 block' onClick={() => setShow(!show)}>
+                  />{' '}
+                  {errors.password && (
+                    <span className='text-red-600'>This field is required</span>
+                  )}
+                  <button
+                    className='mr-auto ml-2 mt-2 block'
+                    onClick={() => setShow(!show)}
+                  >
                     {show ? <AiFillEyeInvisible /> : <AiFillEye />}
                   </button>
                 </div>
@@ -101,7 +110,6 @@ const Login = () => {
                 <div className='flex flex-col w-full border-opacity-50'>
                   <div className='divider'></div>
                   <button>
-                    
                     <SocialLogin />
                   </button>
                 </div>
