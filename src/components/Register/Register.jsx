@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import useProvider from '../../hooks/useProvider';
-
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Register = () => {
   const navigate = useNavigate()
@@ -20,6 +21,7 @@ const Register = () => {
     const [error, setError] = useState('');
 
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -27,13 +29,13 @@ const Register = () => {
   const onSubmit = (data) => {
       setSuccess('');
       setError('');
-    const saveData = { ...data, role: 'student' }
+    
     if (data.password !== data.confirmPassword)
     {
     
       return setError("confirm password wrong")
     }
-    console.log(saveData);
+    
     signUpWithEmail(data.email,data.password).then(result => {
       const loggedUser = result.user;
       console.log(loggedUser);
@@ -41,9 +43,28 @@ const Register = () => {
       setSuccess("Registration Successfully")
       if (loggedUser)
       {
-        updateUserProfile(data.name, data.photoURL)
-        console.log('register===43')
-        navigate('/');
+        updateUserProfile(data.name, data.photoURL).then(() => {   
+          const saveData = { name:data.name, image:data.photoURL, email:data.email, role: 'student' };
+          axios.post('http://localhost:5000/students',saveData).then(res=>{
+            console.log(res.data)
+             if (res?.data?.insertedId) {
+              //  reset();
+               console.log(saveData);
+               Swal.fire({
+                 position: 'center',
+                 icon: 'success',
+                 title: 'Registration Successful',
+                 showConfirmButton: false,
+                 timer: 1000,
+               });
+              //  navigate('/');
+             }
+            // navigate('/');
+          });
+        }).catch(error => {
+          setError(error.message)
+        })
+        
       }
     }).catch(error => {
       setSuccess('')
