@@ -4,9 +4,9 @@ import { useEffect } from 'react';
 const Instructor = () => {
 
 axios
-  .get('http://localhost:5000/students')
-  .then((response) => {
-    console.log(response.data);
+  .get(`http://localhost:5000/students/instructor`)
+  .then((res) => {
+    console.log(res.data);
     // Process the response data here
   })
 
