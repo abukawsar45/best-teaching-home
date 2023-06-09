@@ -3,8 +3,9 @@ import useProvider from "../../hooks/useProvider";
 
 const Header = () => {
 
-  const {user, logOut } = useProvider();
-  console.log(user)
+  const { user, logOut, dark, setDark } = useProvider();
+
+  console.log(dark)
    const handleLogOut = () => {
      logOut().then().catch();
    };
@@ -90,6 +91,14 @@ const Header = () => {
           <ul className='menu menu-horizontal px-1'>{navOptions}</ul>
         </div>
         <div className='navbar-end'>
+          <button
+            onClick={() => setDark(!dark)}
+            className={`btn btn-outline ${
+              dark ? 'bg-white text-black' : 'text-white bg-black'
+            } mr-4`}
+          >
+            {dark ? <span> Dark</span> : <span>Light</span>}
+          </button>
           {user && (
             <div className='avatar text-center w-10 online mr-2'>
               <div className='w-10 rounded-full'>
