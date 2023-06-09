@@ -17,6 +17,7 @@ const InstractorAddClass = () => {
       const subjectData = {
         ...data,
         date: new Date(),
+        status: 'pending',
         availableSeat: parseFloat(data.availableSeat),
       };
       

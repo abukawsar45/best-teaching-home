@@ -9,14 +9,14 @@ server repo [server repo](https://github.com/programming-hero-web-course1/b7a12-
 
 ### server side package
 
--JWT token
+- JWT token
 - mongoDB connection
 - use express.js
 - use Middleware
 - Server-side verification of admin, instructor, or student roles.
 
 
-### Features
+### Client Site Features
 
 - Utilizes Form Hook for efficient form handling.
 - Integrates TanStack Query package for seamless data fetching and state management.

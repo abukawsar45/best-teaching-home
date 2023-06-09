@@ -8,6 +8,7 @@ import Dashboard from "../Dashboard/Dashboard/Dashboard";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import InstractorAddClass from "../Dashboard/InstractorAdd/InstractorAddClass";
+import AllUser from "../Dashboard/Dashboard/AllUser/AllUser";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: '/AddClass',
         element: <InstractorAddClass/>,
+      },
+      {
+        path: '/allUsers',
+        element: <AllUser />,
       },
     ],
   },
