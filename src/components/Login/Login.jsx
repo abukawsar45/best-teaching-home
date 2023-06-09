@@ -105,7 +105,11 @@ const Login = () => {
                   <p className='text-red-600'>{error && error}</p>
                 </div>
                 <div className='form-control mt-6'>
-                  <button className='btn btn-primary'>Login</button>
+                  <input
+                    type='submit'
+                    value='Login'
+                    className='btn submit btn-primary'
+                  />
                 </div>
                 <div className='flex flex-col w-full border-opacity-50'>
                   <div className='divider'></div>

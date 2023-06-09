@@ -79,7 +79,9 @@ const Register = () => {
         <div className='hero-content flex-col md:flex-row md:justify-center'>
           <div className='mr-8'>
             <h1 className='text-5xl font-bold'>Registration Now</h1>
-            <p className='py-6'>Safety First.Provide your information for safety.</p>
+            <p className='py-6'>
+              Safety First.Provide your information for safety.
+            </p>
           </div>
           <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
             <div className='text-center text-5xl font-bold mt-2'>
@@ -200,7 +202,11 @@ const Register = () => {
                   <p className='text-red-600'>{error && error}</p>
                 </div>
                 <div className='form-control mt-6'>
-                  <button className='btn btn-primary'>Register</button>
+                  <input
+                    type='submit'
+                    value='Register'
+                    className='btn submit btn-primary'
+                  />
                 </div>
                 <div className='flex flex-col w-full border-opacity-50'>
                   <div className='divider'></div>
