@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const ErrorPage = () => {
   return (
     <div>
-      <Link to='/' className='my-4 mx-4 btn btn-success'>
+      <Link to='/' className='my-4 mx-4 btn btn-info'>
         Home
       </Link>
       <div className="flex justify-center">
