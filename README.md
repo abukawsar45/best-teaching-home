@@ -1,5 +1,5 @@
 
-**## Best Teaching Home**
+## Best Teaching Home
 <img src="https://i.ibb.co/jGPdH9H/download.jpg" alt="website logo">
 
 live site Link [Best Teaching Home](https://best-teaching-home.web.app/).
