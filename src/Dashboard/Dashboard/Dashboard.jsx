@@ -12,65 +12,81 @@ const Dashboard = () => {
   const [isInstructor] = useInstructor()
   const [isStudent] = useStudent()
   console.log('admin', isAdmin,'ins',isInstructor,'st',isStudent )
-  return (
-    <div className='drawer lg:drawer-open'>
-      <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
-      <div className='drawer-content flex flex-col items-center justify-center'>
-        {/* Page content here */}
-        <label
-          htmlFor='my-drawer-2'
-          className='btn btn-primary drawer-button lg:hidden'
-        >
-          Open drawer
-        </label>
-        <Outlet />
-      </div>
-      <div className='drawer-side'>
-        <label htmlFor='my-drawer-2' className='drawer-overlay'></label>
-        <ul className='menu p-4 w-80 h-full bg-base-200 text-base-content'>
-          {/* Sidebar content here */}
-          {isStudent && (
-            <>
-              <li>
-                <ActiveLink to='/'>My Selected Class</ActiveLink>
-              </li>
-              <li>
-                <ActiveLink to='/'>My Enrolled Class</ActiveLink>
-              </li>
-              <li>
-                <ActiveLink to='/'>Payment</ActiveLink>
-              </li>
-              <li>
-                <ActiveLink to='/'>Payment History</ActiveLink>
-              </li>
-            </>
-          )}
-          {isInstructor && (
-            <>
-              <li>
-                <ActiveLink to='/'>Add a Class</ActiveLink>
-              </li>
-              <li>
-                <ActiveLink to='/'>My Classes</ActiveLink>
-              </li>
-            </>
-          )}
-          {isAdmin && (
-            <>
-              <li>
-                <ActiveLink to='/'>Manage Classes</ActiveLink>
-              </li>
-              <li>
-                <ActiveLink to='/'>Manage Users</ActiveLink>
-              </li>
-            </>
-          )}
-
-          <div className='divider'></div>
-        </ul>
-      </div>
+return (
+  <div className='drawer lg:drawer-open'>
+    <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
+    <div className='drawer-content flex flex-col '>
+      {/* Page content here */}
+      <label
+        htmlFor='my-drawer-2'
+        className='btn btn-primary drawer-button lg:hidden'
+      >
+        Open drawer
+      </label>
+      <Outlet />
     </div>
-  );
+    <div className='drawer-side'>
+      <label htmlFor='my-drawer-2' className='drawer-overlay'></label>
+      <ul className='menu p-4 w-80 h-full bg-base-200 text-base-content'>
+        {/* Sidebar content here */}
+        {isStudent && (
+          <>
+            <li>
+              <ActiveLink className='w-full' to='/'>
+                <span className='block w-64'>My Selected Class</span>
+              </ActiveLink>
+            </li>
+            <li>
+              <ActiveLink className='w-full' to='/'>
+                <span className='block w-64'>My Enrolled Class</span>
+              </ActiveLink>
+            </li>
+            <li>
+              <ActiveLink className='w-full' to='/'>
+                <span className='block w-64'>Payment</span>
+              </ActiveLink>
+            </li>
+            <li>
+              <ActiveLink className='w-full' to='/'>
+                <span className='block w-64'>Payment History</span>
+              </ActiveLink>
+            </li>
+          </>
+        )}
+        {isInstructor && (
+          <>
+            <li>
+              <ActiveLink className='w-full' to='addClass'>
+                <span className='block w-64'>Add a Class</span>
+              </ActiveLink>
+            </li>
+            <li>
+              <ActiveLink className='w-full' to={`myclass/${user?.email}`}>
+                <span className='block w-64'>My Classes</span>
+              </ActiveLink>
+            </li>
+          </>
+        )}
+        {isAdmin && (
+          <>
+            <li>
+              <ActiveLink className='w-full' to='manageClass'>
+                <span className='block w-64'>Manage Classes</span>
+              </ActiveLink>
+            </li>
+            <li>
+              <ActiveLink className='w-full' to='/'>
+                <span className='block w-64'>Manage Users</span>
+              </ActiveLink>
+            </li>
+          </>
+        )}
+
+        <div className='divider'></div>
+      </ul>
+    </div>
+  </div>
+);
 };
 
 export default Dashboard;

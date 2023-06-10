@@ -6,7 +6,8 @@ import Swal from 'sweetalert2';
 import ManageClassRow from './ManageClassRow/ManageClassRow';
 
   
- const ManageClass = () => {
+const ManageClass = () => {
+   
     const [allClass, setallClass] = useState();
     // console.log(allClass);
   const [axiosSecure] = useAxiosSecure();
@@ -22,6 +23,7 @@ import ManageClassRow from './ManageClassRow/ManageClassRow';
       setallClass(res.data);
     });
   }, []);
+
 
   const handleMakeAdmin = (user) => {
     axios

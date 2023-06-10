@@ -31,8 +31,6 @@ const Login = () => {
         setError('');
         setSuccess('Login Successfully');
         if (loggedUser) {
-         
-          console.log('login===39');
           navigate(from, { replace: true });
         }
       })

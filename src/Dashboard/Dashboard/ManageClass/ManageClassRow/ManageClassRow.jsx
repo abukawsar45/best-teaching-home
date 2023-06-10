@@ -1,10 +1,25 @@
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const ManageClassRow = ({ singleClass }) => {
-  const [disApprove,setDisApprove]= useState(false) 
-  const [disDeny,setDisDeny]= useState(false) 
+  
+  const handleClassStatus = (id, status) => {
+    console.log(id, status);
+     axios.patch(`http://localhost:5000/classesStatus/${id}?status=${status}`).then((res) => {
+       console.log(res.data);
+          if (res.data.modifiedCount > 0)
+       {
+            Swal.fire(
+              'Class Approved Successfully',
+              'Saved',
+              'success');
+            // form.reset();
+          }
+       
+     });
+  };
 
      const {
        register,
@@ -13,10 +28,11 @@ const ManageClassRow = ({ singleClass }) => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-     axios.patch('http://localhost:5000/allClass').then((res) => {
-       console.log(res.data);
-       
-     });
+     axios
+       .put(`http://localhost:5000/feedback/${singleClass._id}`, data)
+       .then((res) => {
+         console.log(res.data);
+       });
   }
 
   const openModal = () => {
@@ -49,8 +65,33 @@ const ManageClassRow = ({ singleClass }) => {
       <th>{singleClass?.status}</th>
       <th className='text-center'>
         <div>
-          <button disabled={false} className='btn btn-success btn-xs'>Approve</button>{' '}
-          <button disabled={false} className='btn btn-warning btn-xs'>Deny</button>{' '}
+          {singleClass.status === 'pending' ? (
+            <>
+              {' '}
+              <button
+                onClick={() => handleClassStatus(singleClass._id, 'approve')}
+                className='btn btn-success btn-xs mt-2'
+              >
+                Approve
+              </button>{' '}
+              <button
+                onClick={() => handleClassStatus(singleClass._id, 'deny')}
+                className='btn btn-warning btn-xs mt-2'
+              >
+                Deny
+              </button>{' '}
+            </>
+          ) : (
+            <>
+              {' '}
+              <button disabled={true} className='btn btn-success btn-xs mt-2'>
+                Approve
+              </button>{' '}
+              <button disabled={true} className='btn btn-warning btn-xs mt-2'>
+                Deny
+              </button>{' '}
+            </>
+          )}
         </div>
         {/* You can open the modal using ID.showModal() method */}
         <button className='btn mt-2' onClick={openModal}>
@@ -68,9 +109,7 @@ const ManageClassRow = ({ singleClass }) => {
               {...register('feedback', { required: true })}
               className='textarea text-gray-100 textarea-bordered textarea-lg w-full max-w-xs'
             ></textarea>{' '}
-            {errors.feedback && (
-              <span className='text-red-600'></span>
-            )}
+            {errors.feedback && <span className='text-red-600'></span>}
             <div className='modal-action'>
               {/* if there is a button, it will close the modal */}
               <input

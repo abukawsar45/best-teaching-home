@@ -7,10 +7,12 @@ import Class from "../components/Class/Class";
 import Dashboard from "../Dashboard/Dashboard/Dashboard";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
-import InstractorAddClass from "../Dashboard/InstractorAdd/InstractorAddClass";
 import ManageUser from "../Dashboard/Dashboard/ManageUser/ManageUser";
 import ManageClass from './../Dashboard/Dashboard/ManageClass/ManageClass';
 import PrivateRoute from './../private/PrivateRoute';
+import InstractorAddClass from './../Dashboard/InstractorAdd/InstractorAddClass';
+import MyClass from "../Dashboard/MyClass/MyClass";
+import UpdateClass from "../Dashboard/Dashboard/UpdateClass/UpdateClass";
 
 
 const router = createBrowserRouter([
@@ -32,10 +34,6 @@ const router = createBrowserRouter([
         element: <Class />,
       },
       {
-        path: '/dashboard',
-        element: <PrivateRoute><Dashboard/> </PrivateRoute>
-      },
-      {
         path: '/login',
         element: <Login />,
       },
@@ -44,18 +42,37 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: '/AddClass',
-        element: <InstractorAddClass/>,
-      },
-      {
-        path: '/manageUser',
-        element: <ManageUser />,
-      },
-      {
-        path: '/manageClass',
-        element: <ManageClass />,
+        path: '/dashboard',
+        element: (
+          <PrivateRoute>
+            <Dashboard />{' '}
+          </PrivateRoute>
+        ),
+        children: [
+          {
+            path: 'addClass',
+            element: <InstractorAddClass />,
+          },
+          {
+            path: 'myclass/:email/update/:id',
+            element: <UpdateClass />,
+          },
+          {
+            path: 'myclass/:email',
+            element: <MyClass />,
+          },
+          {
+            path: 'manageUser', // Corrected path
+            element: <ManageUser />,
+          },
+          {
+            path: 'manageClass', // Corrected path
+            element: <ManageClass />,
+          },
+        ],
       },
     ],
   },
 ]);
+
 export default router
