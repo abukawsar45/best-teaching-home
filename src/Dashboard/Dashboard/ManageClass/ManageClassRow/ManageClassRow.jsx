@@ -49,10 +49,10 @@ const ManageClassRow = ({ singleClass }) => {
     }
   }
   return (
-    <tr className='my-2 text-center'>
+    <tr className='my-1 text-center'>
       <td>
         <img
-          className='w-12 rounded'
+          className='w-24 rounded'
           src={singleClass?.classImage}
           alt='class photo'
         />
