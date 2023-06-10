@@ -109,7 +109,7 @@ const InstractorAddClass = () => {
               <input
                 type='text'
                 value={user?.displayName}
-                {...register('instructorName')}
+                {...register('instructorName', { required: true })}
                 className='input input-bordered'
               />{' '}
             </div>
@@ -120,14 +120,18 @@ const InstractorAddClass = () => {
               <input
                 type='email'
                 value={user?.email}
-                {...register('email')}
+                {...register('email', { required: true } )}
                 className='input input-bordered'
               />{' '}
             </div>
           </div>
 
           <div className='form-control mt-6'>
-            <input type='submit' value='Add a Class' className='btn submit btn-primary'/>
+            <input
+              type='submit'
+              value='Add a Class'
+              className='btn submit btn-primary'
+            />
           </div>
           <div className='flex flex-col w-full border-opacity-50'></div>
         </div>

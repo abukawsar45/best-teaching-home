@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom";
 import useProvider from "../../hooks/useProvider";
+import ActiveLink from "../../components/ActiveLink/ActiveLink";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
   const { user, logOut, dark, setDark } = useProvider();
 
-  console.log(dark)
+  console.log(dark,user)
    const handleLogOut = () => {
      logOut().then().catch();
    };
@@ -15,22 +16,22 @@ const Header = () => {
       {' '}
       <li>
         {' '}
-        <Link to='/'>Home</Link>
+        <ActiveLink to='/'>Home</ActiveLink>
       </li>
       <li>
         {' '}
-        <Link to='/instructor'>Instructor</Link>
+        <ActiveLink to='/instructor'>Instructor</ActiveLink>
       </li>
       <li>
         {' '}
-        <Link to='/class'>Class</Link>
+        <ActiveLink to='/class'>Class</ActiveLink>
       </li>
       {user ? (
         <>
           {' '}
           <li>
             {' '}
-            <Link to='/dashboard'>Dashboard</Link>
+            <ActiveLink to='/dashboard'>Dashboard</ActiveLink>
           </li>
           <li>
             {' '}
@@ -42,11 +43,11 @@ const Header = () => {
           {' '}
           <li>
             {' '}
-            <Link to='/login'>Login</Link>
+            <ActiveLink to='/login'>Login</ActiveLink>
           </li>
           <li>
             {' '}
-            <Link to='/register'>Register</Link>
+            <ActiveLink to='/register'>Register</ActiveLink>
           </li>
         </>
       )}
@@ -85,7 +86,7 @@ const Header = () => {
             className='h-8 rounded'
             alt='Logo'
           />
-          <Link className='btn btn-ghost normal-case text-xl'>BTH</Link>
+          <Link className='btn btn-ghost normal-case text-xl'>Best Teaching Home</Link>
         </div>
         <div className='navbar-center hidden lg:flex'>
           <ul className='menu menu-horizontal px-1'>{navOptions}</ul>

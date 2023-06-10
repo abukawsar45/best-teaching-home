@@ -1,14 +1,17 @@
-import React from 'react';
+
+import { ScaleLoader } from 'react-spinners';
 import useProvider from '../hooks/useProvider';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const PrivateRoute = ({children}) => {
+  
+  const { user, loading } = useProvider();
   const location = useLocation();
 
-  const { user, loading } = useProvider();
-
   if (loading) {
-    return <progress className='progress w-56'></progress>;
+    return(<div className='flex justify-center items-center h-96 '>
+        <ScaleLoader color='#36d7b7' />
+      </div>)
   }
   if (user) {
     return children;

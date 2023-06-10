@@ -10,6 +10,8 @@ import Register from "../components/Register/Register";
 import InstractorAddClass from "../Dashboard/InstractorAdd/InstractorAddClass";
 import ManageUser from "../Dashboard/Dashboard/ManageUser/ManageUser";
 import ManageClass from './../Dashboard/Dashboard/ManageClass/ManageClass';
+import PrivateRoute from './../private/PrivateRoute';
+
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard/> </PrivateRoute>
       },
       {
         path: '/login',

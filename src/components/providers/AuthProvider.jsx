@@ -8,7 +8,7 @@ export const AuthContext = createContext(null)
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [dark,setDark] = useState(true)
 
   const loginWithEmail = (email, password) => {
@@ -22,6 +22,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const updateUserProfile = (name, photo) => {
+    setLoading(true)
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
@@ -30,6 +31,7 @@ const AuthProvider = ({ children }) => {
 
   const googleProvider = new GoogleAuthProvider();
   const loginWithGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
   const logOut = () => {
@@ -42,10 +44,12 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser)
       {
-        axios.post('http://localhost:5000/jwt', { email: currentUser.email }).then(data => {
-          console.log(data.data);
-          localStorage.setItem('access-token',data?.data?.token)
-        });
+        axios
+          .post('http://localhost:5000/jwt', { email: currentUser?.email })
+          .then((data) => {
+            console.log('48888', data.data);
+            localStorage.setItem('access-token', data?.data?.token);
+          });
       }
       else
       {
