@@ -32,7 +32,7 @@ return (
         {isStudent && (
           <>
             <li>
-              <ActiveLink className='w-full' to='/'>
+              <ActiveLink className='w-full' to='mySelectedClass'>
                 <span className='block w-64'>My Selected Class</span>
               </ActiveLink>
             </li>

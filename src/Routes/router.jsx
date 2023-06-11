@@ -13,6 +13,7 @@ import PrivateRoute from './../private/PrivateRoute';
 import InstractorAddClass from './../Dashboard/InstractorAdd/InstractorAddClass';
 import MyClass from "../Dashboard/MyClass/MyClass";
 import UpdateClass from "../Dashboard/Dashboard/UpdateClass/UpdateClass";
+import MySelectedClass from './../Dashboard/MySelectedClass/MySelectedClass';
 
 
 const router = createBrowserRouter([
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
           {
             path: 'manageClass', // Corrected path
             element: <ManageClass />,
+          },
+          {
+            path: 'mySelectedClass', // Corrected path
+            element: <MySelectedClass />,
           },
         ],
       },
