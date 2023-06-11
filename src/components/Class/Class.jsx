@@ -15,9 +15,6 @@ const Class = () => {
   
   console.log(allClass);
   
-  useEffect(() => {
-    
-  } ,[])
   return (
     <div>
       <div>

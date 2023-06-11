@@ -3,37 +3,35 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
-const ManageClassRow = ({ singleClass }) => {
-  
+const ManageClassRow = ({ singleClass, refetch }) => {
   const handleClassStatus = (id, status) => {
     console.log(id, status);
-     axios.patch(`http://localhost:5000/classesStatus/${id}?status=${status}`).then((res) => {
-       console.log(res.data);
-          if (res.data.modifiedCount > 0)
-       {
-            Swal.fire(
-              'Class Approved Successfully',
-              'Saved',
-              'success');
-            // form.reset();
-          }
-       
-     });
+    axios
+      .patch(`http://localhost:5000/classesStatus/${id}?status=${status}`)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount > 0)
+        refetch();
+        {
+          Swal.fire('Class Approved Successfully', 'Saved', 'success');
+          // form.reset();
+        }
+      });
   };
 
-     const {
-       register,
-       handleSubmit,
-       formState: { errors },
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-     axios
-       .put(`http://localhost:5000/feedback/${singleClass._id}`, data)
-       .then((res) => {
-         console.log(res.data);
-       });
-  }
+    axios
+      .put(`http://localhost:5000/feedback/${singleClass._id}`, data)
+      .then((res) => {
+        console.log(res.data);
+      });
+  };
 
   const openModal = () => {
     const modal = document.getElementById('my_modal_4');
@@ -43,11 +41,10 @@ const ManageClassRow = ({ singleClass }) => {
   };
   const closeModal = () => {
     const modal = document.getElementById('my_modal_4');
-    if (modal)
-    {
+    if (modal) {
       modal.close();
     }
-  }
+  };
   return (
     <tr className='my-1 text-center'>
       <td>

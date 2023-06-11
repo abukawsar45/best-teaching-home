@@ -75,7 +75,7 @@ return (
               </ActiveLink>
             </li>
             <li>
-              <ActiveLink className='w-full' to='/'>
+              <ActiveLink className='w-full' to='manageUser'>
                 <span className='block w-64'>Manage Users</span>
               </ActiveLink>
             </li>
