@@ -49,7 +49,7 @@ const ManageClassRow = ({ singleClass, refetch }) => {
     <tr className='my-1 text-center'>
       <td>
         <img
-          className='w-24 rounded'
+          className='rounded'
           src={singleClass?.classImage}
           alt='class photo'
         />

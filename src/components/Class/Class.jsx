@@ -2,32 +2,35 @@ import { useEffect, useState } from "react"
 import useClass from "../../hooks/useClass"
 import axios from "axios";
 import ClassCart from "../ClassCart/ClassCart";
+import useAllClass from "../../hooks/useAllClass";
 
 const Class = () => {
-  const [allClass, setAllClass] = useState([]);
+  const [allClassdata, refetch] = useAllClass();
 
-    useEffect(() => {
-      axios.get('http://localhost:5000/allClass/').then((res) => {
-        console.log(res.data);
-        setAllClass(res.data);
-      });
-    }, []);
+
+    // useEffect(() => {
+    //   axios.get('http://localhost:5000/allClass/').then((res) => {
+    //     console.log(res.data);
+    //     setAllClass(res.data);
+    //   });
+    // }, []);
   
-  console.log(allClass);
+  console.log(allClassdata);
   
   return (
     <div>
       <div>
-        <p className="text-2xl text-center my-4 text-sky-400">All Classes Here: {allClass?.length} </p>
+        <p className='text-2xl text-center my-4 text-sky-400'>
+          All Classes Here: {allClassdata?.length}{' '}
+        </p>
       </div>
       <div>
-
-        {
-          allClass.map((cart => <ClassCart key={ cart._id } cart={ cart }/> ))
-        }
+        {allClassdata.map((cart) => (
+          <ClassCart key={cart._id} cart={cart} refetch={refetch} />
+        ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default Class

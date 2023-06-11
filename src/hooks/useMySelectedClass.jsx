@@ -11,7 +11,7 @@ const { refetch, data: selectedClass = [] } = useQuery({
   enabled: !loading,
   queryFn: async () => {
     const response = await axiosSecure.get(
-      `selectedClass/${user?.email}`
+      `/selectedClass/${user?.email}`
     );
     console.log(response);
     return response.data;

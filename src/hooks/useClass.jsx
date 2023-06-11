@@ -11,7 +11,7 @@ const useClass = () => {
      enabled: !loading,
      queryFn: async () => {
        const response = await axiosSecure.get(
-         `instructor/class/${user?.email}`
+         `/instructor/class/${user?.email}`
        );
        console.log(response);
        return response.data;
