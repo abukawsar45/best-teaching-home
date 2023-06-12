@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const MySelectedClassRow = ({ index, singleClass, refetch }) => {
   console.log(singleClass);
   const { orderClassImpage, orderClassName, classPrice } = singleClass;
+  console.log(classPrice)
 
   const handleDeletButton = (singleClass) => {
     console.log(singleClass);
@@ -68,7 +70,13 @@ const MySelectedClassRow = ({ index, singleClass, refetch }) => {
         </button>{' '}
       </th>
       <th className='text-center'>
-        <button className='btn btn-active btn-warning'>PAY</button>{' '}
+        <Link
+          to='payment'
+          state={{ singleClass }}
+          className='btn btn-active btn-warning'
+        >
+          PAY
+        </Link>{' '}
       </th>
     </tr>
   );

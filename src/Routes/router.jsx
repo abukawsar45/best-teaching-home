@@ -14,6 +14,8 @@ import InstractorAddClass from './../Dashboard/InstractorAdd/InstractorAddClass'
 import MyClass from "../Dashboard/MyClass/MyClass";
 import UpdateClass from "../Dashboard/Dashboard/UpdateClass/UpdateClass";
 import MySelectedClass from './../Dashboard/MySelectedClass/MySelectedClass';
+import MyEnrollClass from "../Dashboard/Dashboard/MyEnrollClass/MyEnrollClass";
+import Payment from "../Dashboard/Dashboard/Payment/Payment";
 
 
 const router = createBrowserRouter([
@@ -73,6 +75,14 @@ const router = createBrowserRouter([
           {
             path: 'mySelectedClass', // Corrected path
             element: <MySelectedClass />,
+          },
+          {
+            path: 'myEnrollClass', // Corrected path
+            element: <MyEnrollClass />,
+          },
+          {
+            path: 'mySelectedClass/payment', // Corrected path
+            element: <Payment />,
           },
         ],
       },

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import { useForm } from 'react-hook-form';
 import useProvider from '../../hooks/useProvider';
 import Swal from 'sweetalert2';
@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const InstractorAddClass = () => {
   const {user} = useProvider();
-  console.log(user)
+  // console.log(user)
 
     const {
       register,

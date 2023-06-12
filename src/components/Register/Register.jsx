@@ -208,14 +208,14 @@ const Register = () => {
                     className='btn submit btn-primary'
                   />
                 </div>
-                <div className='flex flex-col w-full border-opacity-50'>
-                  <div className='divider'></div>
-                  <button>
-                    <SocialLogin />
-                  </button>
-                </div>
               </div>
             </form>
+            <div className='flex mb-6 flex-col w-full border-opacity-50'>
+              <div className='divider'></div>
+              <button>
+                <SocialLogin />
+              </button>
+            </div>
           </div>
         </div>
       </div>

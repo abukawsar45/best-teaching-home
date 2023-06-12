@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react"
-import useClass from "../../hooks/useClass"
-import axios from "axios";
 import ClassCart from "../ClassCart/ClassCart";
 import useAllClass from "../../hooks/useAllClass";
 

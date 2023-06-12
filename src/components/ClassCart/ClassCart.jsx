@@ -55,7 +55,9 @@ const ClassCart = ({ cart, refetch }) => {
         orderClassImpage: cart?.classImage,
         orderClassPrice: parseFloat(cart?.price),
         instructorName: cart?.instructorName,
+        classId: cart?._id,
         status: 'selected',
+        selectedDate: new Date(),
         classPrice: cart?.price,
         orderDate: new Date(),
       };

@@ -4,6 +4,21 @@ import useAdmin from "../../hooks/useAdmin";
 import ActiveLink from './../../components/ActiveLink/ActiveLink';
 import useInstructor from "../../hooks/useInstructor";
 import useStudent from "../../hooks/useStudent";
+import { BiSelectMultiple } from 'react-icons/bi';
+import {
+  MdPaid,
+  MdPayments,
+  MdOutlineManageHistory,
+  MdManageAccounts,
+} from 'react-icons/md';
+import { GiEntryDoor } from 'react-icons/gi';
+// import { FaUsersGear } from 'react-icons/fa6';
+// import { FaUsersGear } from 'react-icons/fa6';
+
+
+
+
+
 
 const Dashboard = () => {
   const { user } = useProvider();
@@ -33,22 +48,32 @@ return (
           <>
             <li>
               <ActiveLink className='w-full' to='mySelectedClass'>
-                <span className='block w-64'>My Selected Class</span>
+                <span className=' w-64 flex items-center'>
+                  <BiSelectMultiple className='text-xl mr-2' /> My Selected
+                  Class
+                </span>
+              </ActiveLink>
+            </li>
+            <li>
+              <ActiveLink className='w-full' to='myEnrollClass'>
+                <span className=' w-64 flex items-center'>
+                  <GiEntryDoor className='text-xl mr-2' /> My Enrolled Class
+                </span>
+              </ActiveLink>
+            </li>
+            <li>
+              <ActiveLink className='w-full' to='payment'>
+                <span className=' w-64 flex items-center'>
+                  <MdPaid className=' text-xl mr-2' />
+                  Payment
+                </span>
               </ActiveLink>
             </li>
             <li>
               <ActiveLink className='w-full' to='/'>
-                <span className='block w-64'>My Enrolled Class</span>
-              </ActiveLink>
-            </li>
-            <li>
-              <ActiveLink className='w-full' to='/'>
-                <span className='block w-64'>Payment</span>
-              </ActiveLink>
-            </li>
-            <li>
-              <ActiveLink className='w-full' to='/'>
-                <span className='block w-64'>Payment History</span>
+                <span className=' w-64 flex items-center'>
+                  <MdPayments className=' text-xl mr-2' /> Payment History
+                </span>
               </ActiveLink>
             </li>
           </>
@@ -57,12 +82,12 @@ return (
           <>
             <li>
               <ActiveLink className='w-full' to='addClass'>
-                <span className='block w-64'>Add a Class</span>
+                <span className=' w-64'>Add a Class</span>
               </ActiveLink>
             </li>
             <li>
               <ActiveLink className='w-full' to={`myclass/${user?.email}`}>
-                <span className='block w-64'>My Classes</span>
+                <span className=' w-64'>My Classes</span>
               </ActiveLink>
             </li>
           </>
@@ -71,12 +96,18 @@ return (
           <>
             <li>
               <ActiveLink className='w-full' to='manageClass'>
-                <span className='block w-64'>Manage Classes</span>
+                <span className=' w-64 flex items-center'>
+                  <MdOutlineManageHistory className=' text-xl mr-2' />
+                  Manage Classes
+                </span>
               </ActiveLink>
             </li>
             <li>
               <ActiveLink className='w-full' to='manageUser'>
-                <span className='block w-64'>Manage Users</span>
+                <span className=' w-64 flex items-center'>
+                  <MdManageAccounts className=' text-xl mr-2' />
+                  Manage Users
+                </span>
               </ActiveLink>
             </li>
           </>

@@ -10,6 +10,7 @@ const UpdateClass = () => {
  
   const [updateData,setUpdateData] = useState({})
   const getData = useParams();
+  console.log(updateData)
 
   const {user} = useProvider();
   console.log(updateData, user);
@@ -39,7 +40,7 @@ const UpdateClass = () => {
       
       console.log(subjectData);
       axios
-        .put(`http://localhost:5000/updateClass/${getData.id}`, subjectData)
+        .patch(`http://localhost:5000/updateClass/${getData.id}`, subjectData)
         .then((res) => {
           console.log(res.data);
           if (res?.data?.modifiedCount > 0) {

@@ -79,7 +79,7 @@ const Login = () => {
                   {errors.password && (
                     <span className='text-red-600'>This field is required</span>
                   )}
-                  <button
+                  <button type='button'
                     className='mr-auto ml-2 mt-2 block'
                     onClick={() => setShow(!show)}
                   >
@@ -109,14 +109,14 @@ const Login = () => {
                     className='btn submit btn-primary'
                   />
                 </div>
-                <div className='flex flex-col w-full border-opacity-50'>
-                  <div className='divider'></div>
-                  <button>
-                    <SocialLogin />
-                  </button>
-                </div>
               </div>
             </form>
+            <div className='flex flex-col mb-6 w-full border-opacity-50'>
+              <div className='divider'></div>
+              <button>
+                <SocialLogin />
+              </button>
+            </div>
           </div>
         </div>
       </div>
