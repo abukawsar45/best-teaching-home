@@ -32,6 +32,9 @@ const ManageUser = () => {
       });
   };
   return (
+    // <>
+    //   <h3>manage</h3>
+    // </>
     <div>
       <div className='overflow-x-auto'>
         <table className='table'>

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
@@ -13,23 +12,31 @@ const ManageClassRow = ({ singleClass, refetch }) => {
         if (res.data.modifiedCount > 0)
         refetch();
         {
-          Swal.fire('Class Approved Successfully', 'Saved', 'success');
+          Swal.fire('Class Updated Successfully', 'Saved', 'success');
           // form.reset();
         }
       });
   };
 
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    console.log('2999',data);
     axios
       .put(`http://localhost:5000/feedback/${singleClass._id}`, data)
       .then((res) => {
         console.log(res.data);
+        if (res.data.modifiedCount>0)
+        {
+          reset();
+          closeModal();
+             Swal.fire('Send Feedback Successful', 'Saved', 'success');
+        }
+
       });
   };
 
@@ -91,10 +98,17 @@ const ManageClassRow = ({ singleClass, refetch }) => {
           )}
         </div>
         {/* You can open the modal using ID.showModal() method */}
-        <button className='btn mt-2' onClick={openModal}>
+        <button
+          // disabled={
+          //   singleClass.status === 'pending' || singleClass.status === 'approved'
+          // }
+          className='btn mt-2'
+          onClick={openModal}
+        >
           feedback
         </button>
         <dialog id='my_modal_4' className='modal '>
+          <div className='modal-action relative'>
           <form
             method='dialog'
             className='modal-box w-11/12 max-w-5xl'
@@ -106,19 +120,20 @@ const ManageClassRow = ({ singleClass, refetch }) => {
               {...register('feedback', { required: true })}
               className='textarea text-gray-100 textarea-bordered textarea-lg w-full max-w-xs'
             ></textarea>{' '}
-            {errors.feedback && <span className='text-red-600'></span>}
-            <div className='modal-action'>
+            {errors.feedback && (
+              <span className='text-red-600'>This field is required</span>
+            )}
               {/* if there is a button, it will close the modal */}
               <input
                 type='submit'
                 value='SEND FEEDBACK'
                 className='btn submit btn-primary'
               />
-              <button onClick={closeModal} className='btn'>
-                Close
+          </form>
+              <button type='button' onClick={closeModal} className='btn absolute mr-5 mt-0 bg-red-500 text-white'>
+                X
               </button>
             </div>
-          </form>
         </dialog>
       </th>
     </tr>

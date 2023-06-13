@@ -1,8 +1,25 @@
 import { Link } from "react-router-dom";
 import { AiFillEdit } from 'react-icons/ai';
+import { useEffect, useState } from "react";
+import useAxiosSecure from './../../../hooks/useAxiosSecure';
 
-const SingleMyClass = ({ info}) => {
+const SingleMyClass = ({ info,refetch}) => {
   console.log(info)
+  const [axiosSecure] = useAxiosSecure();
+  const [totalEnroll, setTotalEnroll] = useState([])
+  console.log(10000,{totalEnroll})
+
+  useEffect(() => {
+    /* http://localhost:5000/totalPaidClass/648313e1573f3dbfa036a344?orderClassName=Moktob%20Every%20Morning */
+    axiosSecure.get(
+      `/totalPaidClass/${info._id}?orderClassName=${info.className} `
+    ).then(res=>{
+      console.log(res.data);
+      setTotalEnroll(res.data);
+      refetch();
+    })
+  },[])
+
   return (
     <div className='bg-base-200 my-4 grid grid-cols-1 md:grid-cols-2'>
       <div className='hero-content'>
@@ -12,26 +29,24 @@ const SingleMyClass = ({ info}) => {
         />
       </div>
       <div>
-        <div className='pt-6 mr-4 flex flex-col lg:flex-row justify-between'>
-          <div>
-            <p className='py-1 text-xl font-mono'>
-              Available Seat:{info?.availableSeat}
+        <div className='pt-6 mr-4'>
+            <p className='py-1  font-mono'>
+              Subject Name:{info?.className}
             </p>
-            <p className='mt-4 text-xl'>Status: {info?.status}</p>
-          </div>
-
-          <div>
-            <p className='py-1 text-xl font-mono'>Total Inroll : {0}</p>
+            <p className='py-1  font-mono'>
+              Total Enroll:{totalEnroll.length}
+            </p>
+            <p className='py-1  font-mono'>Available Seat : {info?.availableSeat}</p>
+            <p className='mt-4 text-center bg-gray-500 px-4 py-2 rounded-md'>Status: {info?.status}</p>
             <p className='mt-4'>
-              <Link to={`update/${info._id}`}>
-                <AiFillEdit className='text-3xl text-green-400' />{' '}
+              <Link to={`update/${info._id}`} className="text center btn btn-success w-full" > UPDATE
+                <AiFillEdit className=' text-xl' />{' '}
               </Link>
             </p>
-          </div>
         </div>
         <div className='mt-2'>
           {info.status === 'deny' && (
-            <p className='py-1 text-xl'>
+            <p className='py-1 '>
               {info.status === 'deny'
                 ? 'Feedback: ' + (info.feedback ?? 'no feedback')
                 : ''}

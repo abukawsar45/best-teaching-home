@@ -1,8 +1,8 @@
 import usePaidClass from "../../../hooks/usePaidClass";
-import MyEnrollClassRow from "../../MyEnrollClassRow/MyEnrollClassRow";
+import PaymentHistoryRow from "../../PaymentHistoryRow/PaymentHistoryRow";
 
 
-const MyEnrollClass = () => {
+const PaymentHistory = () => {
   const [paidClasses, refetch] = usePaidClass();
   console.log(paidClasses);
   return (
@@ -13,16 +13,16 @@ const MyEnrollClass = () => {
           <tr className='text-center'>
             <th>#</th>
             <th>Image</th>
-            <th>Instructor Name</th>
-            <th>Class Name</th>
+            <th>Subject Name</th>
             <th>Price</th>
-            <th>Status</th>
+            <th>TnxID</th>
+            <th>Payment Date</th>
           </tr>
         </thead>
         <tbody>
           {/* row 1 */}
           {paidClasses.map((enrollClass, index) => (
-            <MyEnrollClassRow
+            <PaymentHistoryRow
               key={enrollClass._id}
               index={index + 1}
               enrollClass={enrollClass}
@@ -35,4 +35,4 @@ const MyEnrollClass = () => {
   );
 };
 
-export default MyEnrollClass;
+export default PaymentHistory;

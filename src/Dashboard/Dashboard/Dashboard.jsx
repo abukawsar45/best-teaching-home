@@ -12,6 +12,8 @@ import {
   MdManageAccounts,
 } from 'react-icons/md';
 import { GiEntryDoor } from 'react-icons/gi';
+
+import { BsJournalPlus, BsReverseListColumnsReverse } from 'react-icons/bs';
 // import { FaUsersGear } from 'react-icons/fa6';
 // import { FaUsersGear } from 'react-icons/fa6';
 
@@ -48,7 +50,7 @@ return (
           <>
             <li>
               <ActiveLink className='w-full' to='mySelectedClass'>
-                <span className=' w-64 flex items-center'>
+                <span className='block w-64 flex items-center'>
                   <BiSelectMultiple className='text-xl mr-2' /> My Selected
                   Class
                 </span>
@@ -56,22 +58,14 @@ return (
             </li>
             <li>
               <ActiveLink className='w-full' to='myEnrollClass'>
-                <span className=' w-64 flex items-center'>
+                <span className='block w-64 flex items-center'>
                   <GiEntryDoor className='text-xl mr-2' /> My Enrolled Class
                 </span>
               </ActiveLink>
             </li>
             <li>
-              <ActiveLink className='w-full' to='payment'>
-                <span className=' w-64 flex items-center'>
-                  <MdPaid className=' text-xl mr-2' />
-                  Payment
-                </span>
-              </ActiveLink>
-            </li>
-            <li>
-              <ActiveLink className='w-full' to='/'>
-                <span className=' w-64 flex items-center'>
+              <ActiveLink className='w-full' to='paymentHistory'>
+                <span className='block w-64 flex items-center'>
                   <MdPayments className=' text-xl mr-2' /> Payment History
                 </span>
               </ActiveLink>
@@ -82,12 +76,17 @@ return (
           <>
             <li>
               <ActiveLink className='w-full' to='addClass'>
-                <span className=' w-64'>Add a Class</span>
+                <span className='block w-64 flex items-center'>
+                  <BsJournalPlus className=' text-xl mr-2' /> Add a Class
+                </span>
               </ActiveLink>
             </li>
             <li>
               <ActiveLink className='w-full' to={`myclass/${user?.email}`}>
-                <span className=' w-64'>My Classes</span>
+                <span className='block w-64 flex items-center'>
+                  <BsReverseListColumnsReverse className=' text-xl mr-2' /> My
+                  Classes
+                </span>
               </ActiveLink>
             </li>
           </>
@@ -96,7 +95,7 @@ return (
           <>
             <li>
               <ActiveLink className='w-full' to='manageClass'>
-                <span className=' w-64 flex items-center'>
+                <span className='block w-64 flex items-center'>
                   <MdOutlineManageHistory className=' text-xl mr-2' />
                   Manage Classes
                 </span>
@@ -104,7 +103,7 @@ return (
             </li>
             <li>
               <ActiveLink className='w-full' to='manageUser'>
-                <span className=' w-64 flex items-center'>
+                <span className='block w-64 flex items-center'>
                   <MdManageAccounts className=' text-xl mr-2' />
                   Manage Users
                 </span>

@@ -3,10 +3,14 @@ import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useProvider from '../../../hooks/useProvider';
 import './CheckoutForm.css'
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import useMySelectedClass from '../../../hooks/useMySelectedClass';
 
 const CheckoutForm = ({ price, singleClass }) => {
-  console.log(singleClass);
-  console.log(price);
+  // console.log(singleClass);
+  // console.log(price);
+    const [, refetch] = useMySelectedClass();
   const { user } = useProvider();
   const stripe = useStripe();
   const elements = useElements();
@@ -15,12 +19,15 @@ const CheckoutForm = ({ price, singleClass }) => {
   const [clientSecret, setClientSecret] = useState('');
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState('');
+  const navigate = useNavigate();
   console.log({ transactionId });
 
   useEffect(() => {
     if (price > 0) {
       axiosSecure
-        .post(`http://localhost:5000/paymentData?email=${user?.email}`, { price })
+        .post(`http://localhost:5000/paymentData?email=${user?.email}`, {
+          price,
+        })
         .then((res) => {
           console.log(res.data);
           setClientSecret(res.data.clientSecret);
@@ -42,7 +49,7 @@ const CheckoutForm = ({ price, singleClass }) => {
       return;
     }
     // console.log('cart',card)
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: 'card',
       card,
     });
@@ -72,19 +79,38 @@ const CheckoutForm = ({ price, singleClass }) => {
     if (paymentIntent.status === 'succeeded') {
       console.log(paymentIntent);
       setTransactionId(paymentIntent.id);
-      // /* 
-      // updateOrderStatus
-      //  */
-      //  axiosSecure
-      //    .patch(
-      //      `http://localhost:5000/updateOrderStatus/${singleClass?.classId}`,
-      //      {
-      //        price,
-      //      }
-      //    )
-      //    .then((res) => {
-      //      console.log(res.data);
-      //    });
+      const tnxId = paymentIntent.id;
+      /* 
+      updateOrderStatus
+       */
+      axiosSecure
+        .put(
+          `/updateOrderStatus/${singleClass?._id}`,
+
+          {
+            //  ...singleClass,
+            classId: singleClass.classId,
+            classPrice: singleClass.classPrice,
+            customerEmail: singleClass.customerEmail,
+            customerName: singleClass.customerName,
+            instructorName: singleClass.instructorName,
+            orderClassImpage: singleClass.orderClassImpage,
+            orderClassName: singleClass.orderClassName,
+            orderClassPrice: singleClass.orderClassPrice,
+            orderDate: singleClass.orderDate,
+            tnxJID: tnxId,
+            status: 'paid',
+            paymentDate: new Date(),
+          }
+        )
+        .then((res) => {
+          console.log(res.data.result);
+          if (res?.data?.result?.modifiedCount > 0) {
+            refetch();
+           Swal.fire('Payment Successfully', 'Saved', 'success');
+            navigate('/dashboard/myEnrollClass');
+          }
+        });
     }
   };
 

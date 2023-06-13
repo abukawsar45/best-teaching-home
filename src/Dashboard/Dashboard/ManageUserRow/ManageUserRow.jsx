@@ -3,6 +3,25 @@ import React from 'react';
 const ManageUserRow = ({ userInfo,index, refetch }) => {
   console.log(userInfo)
   const { _id, name, email, role } = userInfo || {};
+    const handleMakeAdmin = (user) => {
+      axios
+        .patch(`http://localhost:5000/students/admin/${user?._id}`)
+        .then((data) => {
+          console.log(data.data);
+          if (data.modifiedCount) {
+            refetch();
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: `Now ${user?.name} is Admin!`,
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          }
+        });
+    };
+
+
   return (
     <tr>
       <th>

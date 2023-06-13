@@ -3,14 +3,15 @@ import useProvider from '../../../hooks/useProvider';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const UpdateClass = () => {
  
   const [updateData,setUpdateData] = useState({})
   const getData = useParams();
-  console.log(updateData)
+  const navigate = useNavigate();
+  console.log('------14' ,updateData)
 
   const {user} = useProvider();
   console.log(updateData, user);
@@ -34,7 +35,6 @@ const UpdateClass = () => {
       const subjectData = {
         ...data,
         date: new Date(),
-        status: 'pending',
         availableSeat: parseFloat(data.availableSeat),
       };
       
@@ -49,7 +49,7 @@ const UpdateClass = () => {
               'Updated Successfully',
               'Saved',
               'success');
-            // form.reset();
+            navigate(`/dashboard/myclass/${user?.email}`);
           } else {
             Swal.fire({
               title: 'Already Updated',
@@ -159,7 +159,7 @@ const UpdateClass = () => {
           <div className='form-control mt-6'>
             <input
               type='submit'
-              value='Add a Class'
+              value='Update'
               className='btn submit btn-primary'
             />
           </div>

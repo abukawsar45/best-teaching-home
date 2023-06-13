@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 import useProvider from "../../hooks/useProvider";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Class from './../Class/Class';
 import useStudent from "../../hooks/useStudent";
 
 const ClassCart = ({ cart, refetch }) => {
@@ -11,8 +10,9 @@ const ClassCart = ({ cart, refetch }) => {
   const { user } = useProvider();
   const navigate = useNavigate();
   const location = useLocation();
+  console.log({cart})
 
-  const [bookingClass, setBookingClass] = useState(false);
+  const [bookingClass, setBookingClass] = useState(true);
 
   useEffect(() => {
     axios
@@ -59,7 +59,7 @@ const ClassCart = ({ cart, refetch }) => {
         status: 'selected',
         selectedDate: new Date(),
         classPrice: cart?.price,
-        orderDate: new Date(),
+        instructorEmail: cart?.email
       };
       console.log(custormerInfo);
 
@@ -121,7 +121,7 @@ const ClassCart = ({ cart, refetch }) => {
             </div>
 
             <div className='mt-2 md:mt-6 lg:mt-8'>
-              {isStudent ? (
+              {!user || isStudent ? (
                 bookingClass ? (
                   <>
                     {' '}
@@ -136,6 +136,7 @@ const ClassCart = ({ cart, refetch }) => {
                     <Link
                       onClick={() => handleSelectButton(cart)}
                       className='btn w-full btn-primary'
+                      disabled={cart?.availableSeat === 0}
                     >
                       {' '}
                       Select

@@ -1,12 +1,15 @@
 
 import { useForm } from 'react-hook-form';
 import useProvider from '../../hooks/useProvider';
-import Swal from 'sweetalert2';
+
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const InstractorAddClass = () => {
   const {user} = useProvider();
   // console.log(user)
+  const navigate = useNavigate();
 
     const {
       register,
@@ -24,19 +27,11 @@ const InstractorAddClass = () => {
       console.log(subjectData);
       axios.post('http://localhost:5000/subjects', subjectData).then((res) => {
          console.log(res.data);
-         if (res?.data?.insertedId) {
-           //  reset();
-           console.log(subjectData);
-           Swal.fire({
-             position: 'center',
-             icon: 'success',
-             title: 'Added Subject Successfully',
-             showConfirmButton: false,
-             timer: 1000,
-           });
-           //  navigate('/');
-         }
-         // navigate('/');
+           if (res?.data?.insertedId) {
+             //  reset();
+             Swal.fire('Added Successfully', 'Saved', 'success');
+             navigate(`/dashboard/myclass/${user?.email}`);
+           }
        });
      
     };

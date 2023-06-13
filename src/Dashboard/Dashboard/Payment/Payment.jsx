@@ -17,7 +17,10 @@ const Payment = () => {
       <div>taka payment</div>
       <div>
         <Elements stripe={stripePromise}>
-          <CheckoutForm price={price} singleClass={singleClass} />
+          <CheckoutForm
+            price={price}
+            singleClass={singleClass}
+          />
         </Elements>
       </div>
     </div>
