@@ -14,7 +14,7 @@ const useTotalEnroll = () => {
        const response = await axiosSecure.get(
          `/totalPaidClass/${}`
        );
-       console.log(response);
+       ///console.log(response);
        return response.data;
      },
    });

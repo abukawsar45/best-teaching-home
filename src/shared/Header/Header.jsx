@@ -1,15 +1,14 @@
-import useProvider from "../../hooks/useProvider";
-import ActiveLink from "../../components/ActiveLink/ActiveLink";
-import { Link } from "react-router-dom";
+import useProvider from '../../hooks/useProvider';
+import ActiveLink from '../../components/ActiveLink/ActiveLink';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
-
   const { user, logOut, dark, setDark } = useProvider();
 
-  console.log(dark,user)
-   const handleLogOut = () => {
-     logOut().then().catch();
-   };
+  ///console.log(dark,user)
+  const handleLogOut = () => {
+    logOut().then().catch();
+  };
 
   const navOptions = (
     <>
@@ -35,7 +34,9 @@ const Header = () => {
           </li>
           <li>
             {' '}
-            <button onClick={handleLogOut} to='/'>Logout</button>
+            <button onClick={handleLogOut} to='/'>
+              Logout
+            </button>
           </li>
         </>
       ) : (
@@ -54,7 +55,7 @@ const Header = () => {
     </>
   );
   return (
-    <div className="">
+    <div className=''>
       <div className='navbar bg-base-100'>
         <div className='navbar-start'>
           <div className='dropdown'>
@@ -86,7 +87,9 @@ const Header = () => {
             className='h-8 rounded'
             alt='Logo'
           />
-          <Link className='btn btn-ghost normal-case text-xl'>Best Teaching Home</Link>
+          <Link className='btn btn-ghost normal-case text-xl'>
+            Best Teaching Home
+          </Link>
         </div>
         <div className='navbar-center hidden lg:flex'>
           <ul className='menu menu-horizontal px-1'>{navOptions}</ul>

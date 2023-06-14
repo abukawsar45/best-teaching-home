@@ -1,7 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
-import useProvider from "./useProvider";
-
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from './useAxiosSecure';
+import useProvider from './useProvider';
 
 const useAllClass = () => {
   const { user, loading } = useProvider();
@@ -11,7 +10,7 @@ const useAllClass = () => {
     enabled: !loading,
     queryFn: async () => {
       const response = await axiosSecure.get('/allClass');
-      console.log(response);
+      ///console.log(response);
       return response.data;
     },
   });

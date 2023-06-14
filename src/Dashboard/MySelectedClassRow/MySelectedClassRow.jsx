@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const MySelectedClassRow = ({ index, singleClass, refetch }) => {
-  console.log(singleClass);
+  ///console.log(singleClass);
   const { orderClassImpage, orderClassName, classPrice } = singleClass;
-  console.log(classPrice);
+  ///console.log(classPrice);
 
   const handleDeletButton = (singleClass) => {
-    console.log(singleClass);
+    ///console.log(singleClass);
     // orderClass
     Swal.fire({
       title: 'Are you sure?',
@@ -26,7 +26,7 @@ const MySelectedClassRow = ({ index, singleClass, refetch }) => {
             `https://best-teaching-home-server-abukawsar45.vercel.app/selectedClass/${singleClass?._id}`
           )
           .then((res) => {
-            console.log(res.data);
+            ///console.log(res.data);
             if (res?.data?.deletedCount > 0) {
               refetch();
               Swal.fire('Deleted!', 'Your file has been deleted.', 'success');

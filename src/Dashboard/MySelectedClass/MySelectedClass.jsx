@@ -1,16 +1,15 @@
-import useMySelectedClass from "../../hooks/useMySelectedClass";
-import MySelectedClassRow from "../MySelectedClassRow/MySelectedClassRow";
+import useMySelectedClass from '../../hooks/useMySelectedClass';
+import MySelectedClassRow from '../MySelectedClassRow/MySelectedClassRow';
 
 const MySelectedClass = () => {
   const [selectedClass, refetch] = useMySelectedClass();
-  console.log(selectedClass)
+  ///console.log(selectedClass)
   return (
     <div className='overflow-x-auto'>
       <table className='table'>
         {/* head */}
         <thead>
-          <tr className="text-center">
-            
+          <tr className='text-center'>
             <th>#</th>
             <th>Image</th>
             <th>Name</th>

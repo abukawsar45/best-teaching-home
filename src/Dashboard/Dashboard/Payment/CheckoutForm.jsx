@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import useMySelectedClass from '../../../hooks/useMySelectedClass';
 
 const CheckoutForm = ({ price, singleClass }) => {
-  // console.log(singleClass);
-  // console.log(price);
+  // ///console.log(singleClass);
+  // ///console.log(price);
   const [, refetch] = useMySelectedClass();
   const { user } = useProvider();
   const stripe = useStripe();
@@ -20,7 +20,7 @@ const CheckoutForm = ({ price, singleClass }) => {
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState('');
   const navigate = useNavigate();
-  console.log({ transactionId });
+  ///console.log({ transactionId });
 
   useEffect(() => {
     if (price > 0) {
@@ -32,13 +32,13 @@ const CheckoutForm = ({ price, singleClass }) => {
           }
         )
         .then((res) => {
-          console.log(res.data);
+          ///console.log(res.data);
           setClientSecret(res.data.clientSecret);
         });
     }
   }, [price]);
 
-  console.log(price);
+  ///console.log(price);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,16 +51,16 @@ const CheckoutForm = ({ price, singleClass }) => {
     if (card === null) {
       return;
     }
-    // console.log('cart',card)
+    // ///console.log('cart',card)
     const { error } = await stripe.createPaymentMethod({
       type: 'card',
       card,
     });
     if (error) {
-      // console.log('error', error);
+      // ///console.log('error', error);
       setCardError(error.message);
     } else {
-      // console.log('payment', paymentMethod);
+      // ///console.log('payment', paymentMethod);
       setCardError('');
     }
     setProcessing(true);
@@ -75,12 +75,12 @@ const CheckoutForm = ({ price, singleClass }) => {
         },
       });
     if (confirmEroor) {
-      console.log('confirmError', confirmEroor);
+      ///console.log('confirmError', confirmEroor);
     }
     setProcessing(false);
-    console.log('paymentIntent', paymentIntent.status);
+    ///console.log('paymentIntent', paymentIntent.status);
     if (paymentIntent.status === 'succeeded') {
-      console.log(paymentIntent);
+      ///console.log(paymentIntent);
       setTransactionId(paymentIntent.id);
       const tnxId = paymentIntent.id;
       /* 
@@ -108,7 +108,7 @@ const CheckoutForm = ({ price, singleClass }) => {
           }
         )
         .then((res) => {
-          console.log(res.data.result);
+          ///console.log(res.data.result);
           if (res?.data?.result?.modifiedCount > 0) {
             refetch();
             Swal.fire('Payment Successfully', 'Saved', 'success');

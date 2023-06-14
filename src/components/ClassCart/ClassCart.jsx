@@ -10,7 +10,7 @@ const ClassCart = ({ cart, refetch }) => {
   const { user } = useProvider();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log({ cart });
+  ///console.log({ cart });
 
   const [bookingClass, setBookingClass] = useState(true);
 
@@ -20,13 +20,13 @@ const ClassCart = ({ cart, refetch }) => {
         `https://best-teaching-home-server-abukawsar45.vercel.app/orderClass?email=${user?.email}&orderClassName=${cart?.className}`
       )
       .then((res) => {
-        // console.log(res.data);
+        // ///console.log(res.data);
         setBookingClass(res.data.orderClassNameExists);
         // `orderClass?email=${user?.email}&orderClassName=${}`
       });
   }, [cart?.className, user?.email]);
 
-  console.log(bookingClass);
+  ///console.log(bookingClass);
 
   const handleSelectButton = (cart) => {
     if (!user) {
@@ -45,7 +45,7 @@ const ClassCart = ({ cart, refetch }) => {
         }
       });
     } else {
-      console.log(cart);
+      ///console.log(cart);
       const custormerInfo = {
         customerName: user?.displayName,
         customerEmail: user?.email,
@@ -61,7 +61,7 @@ const ClassCart = ({ cart, refetch }) => {
         instructorImage: cart?.instructorImage,
         // instructorImage:
       };
-      console.log(custormerInfo);
+      ///console.log(custormerInfo);
 
       axios
         .post(
@@ -69,10 +69,10 @@ const ClassCart = ({ cart, refetch }) => {
           custormerInfo
         )
         .then((res) => {
-          console.log(res.data);
+          ///console.log(res.data);
           if (res?.data?.insertedId) {
             refetch();
-            console.log(custormerInfo);
+            ///console.log(custormerInfo);
 
             Swal.fire({
               position: 'center',

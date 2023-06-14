@@ -6,28 +6,25 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import useProvider from '../../hooks/useProvider';
 
 const Login = () => {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(true);
   const [success, setSuccess] = useState('');
-  const [error,setError] = useState('');
-  const {
-    loginWithEmail,
-  } = useProvider();
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
-  
+  const [error, setError] = useState('');
+  const { loginWithEmail } = useProvider();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
-   const {
+  const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    ///console.log(data);
     loginWithEmail(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        ///console.log(loggedUser);
         setError('');
         setSuccess('Login Successfully');
         if (loggedUser) {
@@ -79,7 +76,8 @@ const Login = () => {
                   {errors.password && (
                     <span className='text-red-600'>This field is required</span>
                   )}
-                  <button type='button'
+                  <button
+                    type='button'
                     className='mr-auto ml-2 mt-2 block'
                     onClick={() => setShow(!show)}
                   >

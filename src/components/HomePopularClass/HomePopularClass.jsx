@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
 
 const HomePopularClass = ({ popular }) => {
-  console.log(popular);
+  ///console.log(popular);
   const { orderClassImage, orderClassName, orderClassPrice, count } = popular;
   return (
     <>
@@ -15,7 +14,9 @@ const HomePopularClass = ({ popular }) => {
           <p>Price: $ {orderClassPrice}</p>
           <p>Total Enroll: {count}</p>
           <div className='card-actions justify-end'>
-            <Link to='/class' className='btn btn-primary w-full'>More</Link>
+            <Link to='/class' className='btn btn-primary w-full'>
+              More
+            </Link>
           </div>
         </div>
       </div>

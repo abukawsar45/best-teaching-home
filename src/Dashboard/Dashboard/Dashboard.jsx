@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import useProvider from "../../hooks/useProvider";
 import useAdmin from "../../hooks/useAdmin";
 import ActiveLink from './../../components/ActiveLink/ActiveLink';
@@ -14,6 +14,7 @@ import {
 import { GiEntryDoor } from 'react-icons/gi';
 
 import { BsJournalPlus, BsReverseListColumnsReverse } from 'react-icons/bs';
+import { AiFillHome } from "react-icons/ai";
 // import { FaUsersGear } from 'react-icons/fa6';
 // import { FaUsersGear } from 'react-icons/fa6';
 
@@ -24,11 +25,11 @@ import { BsJournalPlus, BsReverseListColumnsReverse } from 'react-icons/bs';
 
 const Dashboard = () => {
   const { user } = useProvider();
-  console.log(user)
+  ///console.log(user)
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor()
   const [isStudent] = useStudent()
-  console.log('admin', isAdmin,'ins',isInstructor,'st',isStudent )
+  ///console.log('admin', isAdmin,'ins',isInstructor,'st',isStudent )
 return (
   <div className='drawer lg:drawer-open'>
     <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
@@ -69,6 +70,14 @@ return (
                   <MdPayments className=' text-xl mr-2' /> Payment History
                 </span>
               </ActiveLink>
+            </li>{' '}
+           <li>
+            <ActiveLink className='w-full' to='dashboardHome'>
+              <span className='block w-64 flex items-center'>
+                <AiFillHome className=' text-xl mr-2' /> Dashboard
+                {/* Home */}
+              </span>
+            </ActiveLink>
             </li>
           </>
         )}
@@ -88,11 +97,20 @@ return (
                   Classes
                 </span>
               </ActiveLink>
+            </li>{' '}
+            <li>
+              <ActiveLink className='w-full' to='dashboardHome'>
+                <span className='block w-64 flex items-center'>
+                  <AiFillHome className=' text-xl mr-2' /> Dashboard
+                  {/* Home */}
+                </span>
+              </ActiveLink>
             </li>
           </>
         )}
-        {isAdmin && (
+        { isAdmin && (
           <>
+          
             <li>
               <ActiveLink className='w-full' to='manageClass'>
                 <span className='block w-64 flex items-center'>
@@ -109,10 +127,26 @@ return (
                 </span>
               </ActiveLink>
             </li>
+            <li>
+            <ActiveLink className='w-full' to='dashboardHome'>
+              <span className='block w-64 flex items-center'>
+                <AiFillHome className=' text-xl mr-2' /> Dashboard
+                {/* Home */}
+              </span>
+            </ActiveLink>
+            </li>
           </>
         )}
 
         <div className='divider'></div>
+        <li>
+          <Link className='w-full' to='/'>
+            <span className='block w-64 flex items-center'>
+              <AiFillHome className=' text-xl mr-2' /> Home
+              {/* Home */}
+            </span>
+          </Link>
+        </li>
       </ul>
     </div>
   </div>

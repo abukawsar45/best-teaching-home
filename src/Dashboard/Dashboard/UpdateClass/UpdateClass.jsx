@@ -9,10 +9,10 @@ const UpdateClass = () => {
   const [updateData, setUpdateData] = useState({});
   const getData = useParams();
   const navigate = useNavigate();
-  console.log('------14', updateData);
+  ///console.log('------14', updateData);
 
   const { user } = useProvider();
-  console.log(updateData, user);
+  ///console.log(updateData, user);
 
   useEffect(() => {
     axios
@@ -20,7 +20,7 @@ const UpdateClass = () => {
         `https://best-teaching-home-server-abukawsar45.vercel.app/class/${getData.id}`
       )
       .then((res) => {
-        console.log(res.data);
+        ///console.log(res.data);
         setUpdateData(res.data);
       });
   }, []);
@@ -37,14 +37,14 @@ const UpdateClass = () => {
       availableSeat: parseFloat(data.availableSeat),
     };
 
-    console.log(subjectData);
+    ///console.log(subjectData);
     axios
       .patch(
         `https://best-teaching-home-server-abukawsar45.vercel.app/updateClass/${getData.id}`,
         subjectData
       )
       .then((res) => {
-        console.log(res.data);
+        ///console.log(res.data);
         if (res?.data?.modifiedCount > 0) {
           //  reset();
           Swal.fire('Updated Successfully', 'Saved', 'success');

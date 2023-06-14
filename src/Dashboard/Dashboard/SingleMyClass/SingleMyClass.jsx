@@ -4,17 +4,17 @@ import { useEffect, useState } from 'react';
 import useAxiosSecure from './../../../hooks/useAxiosSecure';
 
 const SingleMyClass = ({ info, refetch }) => {
-  console.log(info);
+  ///console.log(info);
   const [axiosSecure] = useAxiosSecure();
   const [totalEnroll, setTotalEnroll] = useState([]);
-  console.log(10000, { totalEnroll });
+  ///console.log(10000, { totalEnroll });
 
   useEffect(() => {
     /* https://best-teaching-home-server-abukawsar45.vercel.app/totalPaidClass/648313e1573f3dbfa036a344?orderClassName=Moktob%20Every%20Morning */
     axiosSecure
       .get(`/totalPaidClass/${info._id}?orderClassName=${info.className} `)
       .then((res) => {
-        console.log(res.data);
+        ///console.log(res.data);
         setTotalEnroll(res.data);
         refetch();
       });

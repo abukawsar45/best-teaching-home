@@ -6,12 +6,12 @@ const Class = () => {
 
   // useEffect(() => {
   //   axios.get('https://best-teaching-home-server-abukawsar45.vercel.app/allClass/').then((res) => {
-  //     console.log(res.data);
+  //     ///console.log(res.data);
   //     setAllClass(res.data);
   //   });
   // }, []);
 
-  console.log(allClassdata);
+  ///console.log(allClassdata);
 
   return (
     <div>

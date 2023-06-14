@@ -8,7 +8,7 @@ const useRoleSet = () => {
     enabled: !loading,
     queryFn: async () => {
       const response = await axiosSecure.get(`/selectedClass/${user?.email}`);
-      console.log(response);
+      ///console.log(response);
       return response.data;
     },
   });

@@ -19,6 +19,7 @@ import Payment from "../Dashboard/Dashboard/Payment/Payment";
 import PaymentHistory from "../Dashboard/Dashboard/PaymentHistory/PaymentHistory";
 import AdminSecure from "../private/AdminSecure";
 import InstructorSecure from './../private/InstructorSecure';
+import DashboardHome from "../Dashboard/Dashboard/DashboardHome/DashboardHome";
 
 
 const router = createBrowserRouter([
@@ -78,6 +79,11 @@ const router = createBrowserRouter([
                 <MyClass />
               </InstructorSecure>
             ),
+          },
+
+          {
+            path: 'dashboardHome', // Corrected path
+            element: <DashboardHome />,
           },
           {
             path: 'manageUser', // Corrected path

@@ -4,13 +4,13 @@ import Swal from 'sweetalert2';
 
 const ManageClassRow = ({ singleClass, refetch }) => {
   const handleClassStatus = (id, status) => {
-    console.log(id, status);
+    ///console.log(id, status);
     axios
       .patch(
         `https://best-teaching-home-server-abukawsar45.vercel.app/classesStatus/${id}?status=${status}`
       )
       .then((res) => {
-        console.log(res.data);
+        ///console.log(res.data);
         if (res.data.modifiedCount > 0) refetch();
         {
           Swal.fire('Class Updated Successfully', 'Saved', 'success');
@@ -26,14 +26,14 @@ const ManageClassRow = ({ singleClass, refetch }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log('2999', data);
+    ///console.log('2999', data);
     axios
       .put(
         `https://best-teaching-home-server-abukawsar45.vercel.app/feedback/${singleClass._id}`,
         data
       )
       .then((res) => {
-        console.log(res.data);
+        ///console.log(res.data);
         if (res.data.modifiedCount > 0) {
           reset();
           closeModal();

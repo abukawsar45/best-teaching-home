@@ -1,16 +1,15 @@
-import { useParams } from "react-router-dom";
-import useClass from "../../hooks/useClass";
-import SingleMyClass from "../Dashboard/SingleMyClass/SingleMyClass";
-import usePaidStudent from "../../hooks/usePaidStudent";
-
+import { useParams } from 'react-router-dom';
+import useClass from '../../hooks/useClass';
+import SingleMyClass from '../Dashboard/SingleMyClass/SingleMyClass';
+import usePaidStudent from '../../hooks/usePaidStudent';
 
 const MyClass = () => {
   const email = useParams();
   const [classes, refetch] = useClass();
   const [paidStudents] = usePaidStudent();
-  console.log(usePaidStudent)
-  
-    // console.log(classes);
+  ///console.log(usePaidStudent)
+
+  // ///console.log(classes);
   return (
     <div className='mx-2'>
       <div className='flex justify-between'>

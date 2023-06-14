@@ -17,7 +17,7 @@ const SocialLogin = () => {
     loginWithGoogle()
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        ///console.log(loggedUser);
 
         if (loggedUser) {
           const saveData = {
@@ -32,10 +32,10 @@ const SocialLogin = () => {
               saveData
             )
             .then((res) => {
-              console.log(res.data);
+              ///console.log(res.data);
               if (res?.data?.insertedId) {
                 //  reset();
-                console.log(saveData);
+                ///console.log(saveData);
                 Swal.fire({
                   position: 'center',
                   icon: 'success',
@@ -50,7 +50,7 @@ const SocialLogin = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        ///console.log(error);
       });
   };
 

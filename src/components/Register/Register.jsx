@@ -12,7 +12,7 @@ const Register = () => {
   const navigate = useNavigate();
   const { signUpWithEmail, updateUserProfile } = useProvider();
 
-  console.log(signUpWithEmail);
+  ///console.log(signUpWithEmail);
   const [show, setShow] = useState(true);
   const [confirmShow, setConfirmShow] = useState(true);
   const [success, setSuccess] = useState('');
@@ -35,7 +35,7 @@ const Register = () => {
     signUpWithEmail(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        ///console.log(loggedUser);
         setError('');
         setSuccess('Registration Successfully');
         if (loggedUser) {
@@ -54,10 +54,10 @@ const Register = () => {
                   saveData
                 )
                 .then((res) => {
-                  console.log(res.data);
+                  ///console.log(res.data);
                   if (res?.data?.insertedId) {
                     reset();
-                    console.log(saveData);
+                    ///console.log(saveData);
                     Swal.fire({
                       position: 'center',
                       icon: 'success',

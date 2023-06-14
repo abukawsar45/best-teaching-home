@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 const InstractorAddClass = () => {
   const { user } = useProvider();
-  console.log(user);
+  ///console.log(user);
   const navigate = useNavigate();
 
   const {
@@ -24,14 +24,14 @@ const InstractorAddClass = () => {
       availableSeat: parseFloat(data.availableSeat),
     };
 
-    console.log(subjectData);
+    ///console.log(subjectData);
     axios
       .post(
         'https://best-teaching-home-server-abukawsar45.vercel.app/subjects',
         subjectData
       )
       .then((res) => {
-        console.log(res.data);
+        ///console.log(res.data);
         if (res?.data?.insertedId) {
           //  reset();
           Swal.fire('Added Successfully', 'Saved', 'success');

@@ -3,35 +3,31 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useProvider from '../../../hooks/useProvider';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 
-const ManageUserRow = ({ userInfo,index, refetch }) => {
+const ManageUserRow = ({ userInfo, index, refetch }) => {
   const { user } = useProvider();
-  console.log(userInfo)
+  ///console.log(userInfo)
   const [axiosSecure] = useAxiosSecure();
-  const { _id, name, image,email, role } = userInfo || {};
+  const { _id, name, image, email, role } = userInfo || {};
   const handleMakeRole = (userData, power) => {
     const updateRole = { power };
-    console.log(power,'----',updateRole)
-      axiosSecure
-        .patch(
-          `/students/role/${userData?._id}?email=${user?.email}`,
-          updateRole
-        )
-        .then((data) => {
-          console.log(data.data);
-          if (data?.data?.modifiedCount > 0) {
-            console.log('2222');
-            refetch();
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: `Now ${userData?.name} is now ${power}!`,
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
-    };
-
+    ///console.log(power,'----',updateRole)
+    axiosSecure
+      .patch(`/students/role/${userData?._id}?email=${user?.email}`, updateRole)
+      .then((data) => {
+        ///console.log(data.data);
+        if (data?.data?.modifiedCount > 0) {
+          ///console.log('2222');
+          refetch();
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `Now ${userData?.name} is now ${power}!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
 
   return (
     <tr className='text-center'>
@@ -67,10 +63,7 @@ const ManageUserRow = ({ userInfo,index, refetch }) => {
         </span>
       </th>
       <th className='mx-auto'>
-        <button
-        
-          className='btn btn-active btn-error'
-        >
+        <button className='btn btn-active btn-error'>
           <RiDeleteBin6Fill className='text-xl' />
         </button>{' '}
       </th>

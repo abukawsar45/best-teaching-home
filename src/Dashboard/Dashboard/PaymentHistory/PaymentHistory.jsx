@@ -1,10 +1,9 @@
-import usePaidClass from "../../../hooks/usePaidClass";
-import PaymentHistoryRow from "../../PaymentHistoryRow/PaymentHistoryRow";
-
+import usePaidClass from '../../../hooks/usePaidClass';
+import PaymentHistoryRow from '../../PaymentHistoryRow/PaymentHistoryRow';
 
 const PaymentHistory = () => {
   const [paidClasses, refetch] = usePaidClass();
-  console.log(paidClasses);
+  ///console.log(paidClasses);
   return (
     <div className='overflow-x-auto'>
       <table className='table'>

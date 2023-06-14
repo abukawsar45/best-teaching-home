@@ -1,8 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
-import useProvider from "./useProvider";
-
-
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from './useAxiosSecure';
+import useProvider from './useProvider';
 
 const useAdminForUsers = () => {
   const { user, loading } = useProvider();
@@ -12,7 +10,7 @@ const useAdminForUsers = () => {
     enabled: !loading,
     queryFn: async () => {
       const response = await axiosSecure.get(`/admin/allUser/${user?.email}`);
-      console.log(response.data);
+      ///console.log(response.data);
       return response.data;
     },
   });

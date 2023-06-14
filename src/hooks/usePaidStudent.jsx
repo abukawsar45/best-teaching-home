@@ -14,7 +14,7 @@ const usePaidStudent = () => {
       const response = await axiosSecure.get(
         `/totalstudents/${user?.email}?status=paid`
       );
-      console.log(response);
+      ///console.log(response);
       return response.data;
     },
   });
