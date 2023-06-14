@@ -17,6 +17,8 @@ import MySelectedClass from './../Dashboard/MySelectedClass/MySelectedClass';
 import MyEnrollClass from "../Dashboard/Dashboard/MyEnrollClass/MyEnrollClass";
 import Payment from "../Dashboard/Dashboard/Payment/Payment";
 import PaymentHistory from "../Dashboard/Dashboard/PaymentHistory/PaymentHistory";
+import AdminSecure from "../private/AdminSecure";
+import InstructorSecure from './../private/InstructorSecure';
 
 
 const router = createBrowserRouter([
@@ -55,39 +57,77 @@ const router = createBrowserRouter([
         children: [
           {
             path: 'addClass',
-            element: <InstractorAddClass />,
+            element: (
+              <InstructorSecure>
+                <InstractorAddClass />
+              </InstructorSecure>
+            ),
           },
           {
             path: 'myclass/:email/update/:id',
-            element: <UpdateClass />,
+            element: (
+              <InstructorSecure>
+                <UpdateClass />
+              </InstructorSecure>
+            ),
           },
           {
             path: 'myclass/:email',
-            element: <MyClass />,
+            element: (
+              <InstructorSecure>
+                <MyClass />
+              </InstructorSecure>
+            ),
           },
           {
             path: 'manageUser', // Corrected path
-            element: <ManageUser />,
+            element: (
+              <AdminSecure>
+                {' '}
+                <ManageUser />
+              </AdminSecure>
+            ),
           },
           {
             path: 'manageClass', // Corrected path
-            element: <ManageClass />,
+            element: (
+              <AdminSecure>
+                <ManageClass />
+              </AdminSecure>
+            ),
           },
           {
             path: 'mySelectedClass', // Corrected path
-            element: <MySelectedClass />,
+            element: (
+              <PrivateRoute>
+                {' '}
+                <MySelectedClass />
+              </PrivateRoute>
+            ),
           },
           {
             path: 'myEnrollClass', // Corrected path
-            element: <MyEnrollClass />,
+            element: (
+              <PrivateRoute>
+                <MyEnrollClass />
+              </PrivateRoute>
+            ),
           },
           {
             path: 'paymentHistory', // Corrected path
-            element: <PaymentHistory />,
+            element: (
+              <PrivateRoute>
+                <PaymentHistory />
+              </PrivateRoute>
+            ),
           },
           {
             path: 'mySelectedClass/payment', // Corrected path
-            element: <Payment />,
+            element: (
+              <PrivateRoute>
+                <Payment />
+              </PrivateRoute>
+            ),
           },
         ],
       },

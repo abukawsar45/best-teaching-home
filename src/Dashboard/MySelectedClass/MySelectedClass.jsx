@@ -21,7 +21,7 @@ const MySelectedClass = () => {
         </thead>
         <tbody>
           {/* row 1 */}
-          {selectedClass.map((singleClass, index) => (
+          {selectedClass?.map((singleClass, index) => (
             <MySelectedClassRow
               key={singleClass._id}
               index={index + 1}

@@ -7,16 +7,13 @@ const useClass = () => {
    const { user, loading } = useProvider();
    const [axiosSecure] = useAxiosSecure();
    const {refetch, data: classes =[]  } = useQuery({
-     queryKey: ['isClass', user?.email],
+     queryKey: ['isinstuctorClass', user?.email],
      enabled: !loading,
      queryFn: async () => {
        const response = await axiosSecure.get(
-         `/instru
-         
-         
-         ctor/class/${user?.email}`
+         `/instructor/class/${user?.email}`
        );
-       console.log(response);
+      //  console.log(response);
        return response.data;
      },
    });

@@ -23,7 +23,7 @@ const Instructor = () => {
     <div>
       Instructor
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-        {instructors.map((instructor) => (
+        {instructors?.map((instructor) => (
           <InstructorCart key={instructor._id} instructor={instructor} />
         ))}
       </div>

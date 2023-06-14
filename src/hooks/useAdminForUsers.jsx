@@ -3,15 +3,16 @@ import useAxiosSecure from "./useAxiosSecure";
 import useProvider from "./useProvider";
 
 
+
 const useAdminForUsers = () => {
   const { user, loading } = useProvider();
   const [axiosSecure] = useAxiosSecure();
   const { data: allUsersData, refetch } = useQuery({
-    queryKey: ['manageAllUser', user?.email],
+    queryKey: ['manageAllClasses', user?.email],
     enabled: !loading,
     queryFn: async () => {
       const response = await axiosSecure.get(`/admin/allUser/${user?.email}`);
-      console.log('1444', response.data);
+      console.log(response.data);
       return response.data;
     },
   });

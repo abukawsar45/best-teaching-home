@@ -30,28 +30,27 @@ const SingleMyClass = ({ info,refetch}) => {
       </div>
       <div>
         <div className='pt-6 mr-4'>
-            <p className='py-1  font-mono'>
-              Subject Name:{info?.className}
-            </p>
-            <p className='py-1  font-mono'>
-              Total Enroll:{totalEnroll.length}
-            </p>
-            <p className='py-1  font-mono'>Available Seat : {info?.availableSeat}</p>
-            <p className='mt-4 text-center bg-gray-500 px-4 py-2 rounded-md'>Status: {info?.status}</p>
-            <p className='mt-4'>
-              <Link to={`update/${info._id}`} className="text center btn btn-success w-full" > UPDATE
-                <AiFillEdit className=' text-xl' />{' '}
-              </Link>
-            </p>
+          <p className='py-1  font-mono'>Subject Name:{info?.className}</p>
+          <p className='py-1  font-mono'>Total Enroll:{totalEnroll.length}</p>
+          <p className='py-1  font-mono'>
+            Available Seat : {info?.availableSeat}
+          </p>
+          <p className='mt-4 text-center bg-gray-500 px-4 py-2 rounded-md'>
+            Status: {info?.status}
+          </p>
+          <p className='mt-4'>
+            <Link
+              to={`update/${info._id}`}
+              className='text center btn btn-success w-full'
+            >
+              {' '}
+              UPDATE
+              <AiFillEdit className=' text-xl' />{' '}
+            </Link>
+          </p>
         </div>
         <div className='mt-2'>
-          {info.status === 'deny' && (
-            <p className='py-1 '>
-              {info.status === 'deny'
-                ? 'Feedback: ' + (info.feedback ?? 'no feedback')
-                : ''}
-            </p>
-          )}
+          {info.feedback && <p className='py-1 '>Feedback: {info.feedback}</p>}
         </div>
       </div>
     </div>

@@ -98,6 +98,7 @@ const CheckoutForm = ({ price, singleClass }) => {
             orderClassName: singleClass.orderClassName,
             orderClassPrice: singleClass.orderClassPrice,
             orderDate: singleClass.orderDate,
+            instructorImage: singleClass.instructorImage,
             tnxJID: tnxId,
             status: 'paid',
             paymentDate: new Date(),

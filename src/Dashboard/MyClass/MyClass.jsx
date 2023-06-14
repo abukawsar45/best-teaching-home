@@ -22,7 +22,7 @@ const MyClass = () => {
         </p>
       </div>
       <div>
-        {classes.map((info) => (
+        {classes?.map((info) => (
           <SingleMyClass key={info._id} info={info} refetch={refetch} />
         ))}
       </div>

@@ -21,7 +21,7 @@ const PaymentHistory = () => {
         </thead>
         <tbody>
           {/* row 1 */}
-          {paidClasses.map((enrollClass, index) => (
+          {paidClasses?.map((enrollClass, index) => (
             <PaymentHistoryRow
               key={enrollClass._id}
               index={index + 1}

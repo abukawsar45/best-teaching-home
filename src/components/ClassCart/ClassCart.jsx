@@ -59,7 +59,9 @@ const ClassCart = ({ cart, refetch }) => {
         status: 'selected',
         selectedDate: new Date(),
         classPrice: cart?.price,
-        instructorEmail: cart?.email
+        instructorEmail: cart?.email,
+        instructorImage: cart?.instructorImage,
+        // instructorImage:
       };
       console.log(custormerInfo);
 
@@ -86,43 +88,61 @@ const ClassCart = ({ cart, refetch }) => {
   };
 
   return (
-    <div className='my-2 md:my-4 lg:my-8'>
+    <>
       <div
-        className={` py-2 md:my-6 lg:py-16 px-2 md:px-4 lg:px-8   ${
+        className={`card w-96 my-2 md:my-6 lg:my-10  ${
           cart?.availableSeat > 0 ? 'bg-base-200' : 'bg-red-700'
         }`}
       >
-        <div className='  grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-6 lg:gap-10 '>
+        <div className='mt-5 grid grid-cols-1'>
           <div>
-            <img
-              src={cart.classImage}
-              className='w-full rounded-lg shadow-2xl '
-            />
+            <figure>
+              <img
+                src={cart?.classImage}
+                className='object-fill h-[200px] rounded-lg shadow-2xl '
+              />
+            </figure>
           </div>
-          <div>
-            <h1 className='text-3xl font-bold'>
+          <div className='card-body'>
+            <h1 className='font-bold'>
               Class Name: {cart?.className}{' '}
             </h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 mt-4 '>
+            <div className=' flex flex-col justify-end gap-6'>
               <div>
-                <h3 className='text-2xl font-medium mt-6'>
-                  {cart?.instructorName}{' '}
-                </h3>
-                <h3 className='text-2xl font-medium mt-6'>{cart?.email} </h3>
+                <h3 className='font-medium '>{cart?.instructorName} </h3>
+                <h3 className='font-medium '>{cart?.email} </h3>
               </div>
               <div>
-                <h3 className='text-2xl font-medium mt-6'>
+                <h3 className='font-medium '>
                   Available Seat: {cart?.availableSeat}{' '}
                 </h3>
-                <h3 className='text-2xl font-medium mt-6'>
-                  Price: $ {cart?.price}{' '}
-                </h3>
+                <h3 className='font-medium '>Price: $ {cart?.price} </h3>
               </div>
-            </div>
 
-            <div className='mt-2 md:mt-6 lg:mt-8'>
-              {!user || isStudent ? (
-                bookingClass ? (
+              <div className=''>
+                {!user || isStudent ? (
+                  bookingClass ? (
+                    <>
+                      {' '}
+                      <button disabled className='btn w-full btn-primary'>
+                        {' '}
+                        Selected
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {' '}
+                      <Link
+                        onClick={() => handleSelectButton(cart)}
+                        className='btn w-full btn-primary'
+                        disabled={cart?.availableSeat === 0}
+                      >
+                        {' '}
+                        Select
+                      </Link>
+                    </>
+                  )
+                ) : (
                   <>
                     {' '}
                     <button disabled className='btn w-full btn-primary'>
@@ -130,28 +150,8 @@ const ClassCart = ({ cart, refetch }) => {
                       Selected
                     </button>
                   </>
-                ) : (
-                  <>
-                    {' '}
-                    <Link
-                      onClick={() => handleSelectButton(cart)}
-                      className='btn w-full btn-primary'
-                      disabled={cart?.availableSeat === 0}
-                    >
-                      {' '}
-                      Select
-                    </Link>
-                  </>
-                )
-              ) : (
-                <>
-                  {' '}
-                  <button disabled className='btn w-full btn-primary'>
-                    {' '}
-                    Selected
-                  </button>
-                </>
-              )}
+                )}
+              </div>
             </div>
 
             <div className='mt-2 md:mt-6 lg:mt-8'>
@@ -168,7 +168,7 @@ const ClassCart = ({ cart, refetch }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

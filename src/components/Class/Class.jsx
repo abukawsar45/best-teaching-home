@@ -21,8 +21,8 @@ const Class = () => {
           All Classes Here: {allClassdata?.length}{' '}
         </p>
       </div>
-      <div>
-        {allClassdata.map((cart) => (
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8'>
+        {allClassdata?.map((cart) => (
           <ClassCart key={cart._id} cart={cart} refetch={refetch} />
         ))}
       </div>

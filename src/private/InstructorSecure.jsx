@@ -9,10 +9,14 @@ const InstructorSecure = ({ children }) => {
   const [ isInstructor,isInstructorLoading] = useInstructor();
   const location = useLocation();
 
-  if (loading || isInstructor) {
-    return <ScaleLoader color='#36d7b7' />;
+  if (loading || isInstructorLoading) {
+    return (
+      <div className='text-center'>
+        <ScaleLoader color='#36d7b7' />
+      </div>
+    );
   }
-  if (user && isInstructorLoading) {
+  if (user && isInstructor) {
     return children;
   }
   return <Navigate to='/' state={{ from: location }} replace></Navigate>;

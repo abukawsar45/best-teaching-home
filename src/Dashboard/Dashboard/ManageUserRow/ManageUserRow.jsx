@@ -1,21 +1,32 @@
-import React from 'react';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useProvider from '../../../hooks/useProvider';
+import { RiDeleteBin6Fill } from 'react-icons/ri';
 
 const ManageUserRow = ({ userInfo,index, refetch }) => {
+  const { user } = useProvider();
   console.log(userInfo)
-  const { _id, name, email, role } = userInfo || {};
-    const handleMakeAdmin = (user) => {
-      axios
-        .patch(`http://localhost:5000/students/admin/${user?._id}`)
+  const [axiosSecure] = useAxiosSecure();
+  const { _id, name, image,email, role } = userInfo || {};
+  const handleMakeRole = (userData, power) => {
+    const updateRole = { power };
+    console.log(power,'----',updateRole)
+      axiosSecure
+        .patch(
+          `/students/role/${userData?._id}?email=${user?.email}`,
+          updateRole
+        )
         .then((data) => {
           console.log(data.data);
-          if (data.modifiedCount) {
+          if (data?.data?.modifiedCount > 0) {
+            console.log('2222');
             refetch();
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: `Now ${user?.name} is Admin!`,
+              title: `Now ${userData?.name} is now ${power}!`,
               showConfirmButton: false,
-              timer: 1000,
+              timer: 1500,
             });
           }
         });
@@ -23,36 +34,45 @@ const ManageUserRow = ({ userInfo,index, refetch }) => {
 
 
   return (
-    <tr>
-      <th>
-       {index}
-      </th>
+    <tr className='text-center'>
+      <td>{index}</td>
       <td>
-        <div className='flex items-center space-x-3'>
-          <div className='avatar'>
-            <div className='mask mask-squircle w-12 h-12'>
-              <img
-                src='/tailwind-css-component-profile-2@56w.png'
-                alt='Avatar Tailwind CSS Component'
-              />
-            </div>
-          </div>
-          <div>
-            <div className='font-bold'>Hart Hagerty</div>
-            <div className='text-sm opacity-50'>United States</div>
-          </div>
+        <div>
+          <img className='rounded w-12' src={image} alt='class photo' />
         </div>
       </td>
-      <td>
-        Zemlak, Daniel and Leannon
-        <br />
-        <span className='badge badge-ghost badge-sm'>
-          Desktop Support Technician
-        </span>
-      </td>
-      <td>Purple</td>
+      <td>{name}</td>
+      <th>{role}</th>
       <th>
-        <button className='btn btn-ghost btn-xs'>details</button>
+        <span className='flex flex-col  mx-auto w-20'>
+          {
+            <>
+              {' '}
+              <button
+                disabled={role === 'admin'}
+                onClick={() => handleMakeRole(userInfo, 'admin')}
+                className='btn btn-success btn-xs mt-2'
+              >
+                Admin
+              </button>{' '}
+              <button
+                disabled={role === 'instructor'}
+                onClick={() => handleMakeRole(userInfo, 'instructor')}
+                className='btn btn-warning btn-xs mt-2'
+              >
+                Instructor
+              </button>{' '}
+            </>
+          }
+        </span>
+      </th>
+      <th className='mx-auto'>
+        <button
+        
+          className='btn btn-active btn-error'
+        >
+          <RiDeleteBin6Fill className='text-xl' />
+        </button>{' '}
       </th>
     </tr>
   );

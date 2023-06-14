@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 const InstractorAddClass = () => {
   const {user} = useProvider();
-  // console.log(user)
+  console.log(user)
   const navigate = useNavigate();
 
     const {
@@ -19,6 +19,7 @@ const InstractorAddClass = () => {
     const onSubmit = (data) => {
       const subjectData = {
         ...data,
+        instructorImage: `${user?.photoURL}`,
         date: new Date(),
         status: 'pending',
         availableSeat: parseFloat(data.availableSeat),
