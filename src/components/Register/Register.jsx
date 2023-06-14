@@ -8,19 +8,15 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const Register = () => {
-   const { logOut } = useProvider();
-  const navigate = useNavigate()
-  const { 
-    signUpWithEmail,
-    updateUserProfile,
-  } = useProvider();
-  
-  console.log(signUpWithEmail)
+  const { logOut } = useProvider();
+  const navigate = useNavigate();
+  const { signUpWithEmail, updateUserProfile } = useProvider();
+
+  console.log(signUpWithEmail);
   const [show, setShow] = useState(true);
   const [confirmShow, setConfirmShow] = useState(true);
-    const [success, setSuccess] = useState('');
+  const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
-
 
   const {
     reset,
@@ -29,51 +25,61 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-      setSuccess('');
-      setError('');
-    
-    if (data.password !== data.confirmPassword)
-    {
-    
-      return setError("confirm password wrong")
+    setSuccess('');
+    setError('');
+
+    if (data.password !== data.confirmPassword) {
+      return setError('confirm password wrong');
     }
-    
-    signUpWithEmail(data.email,data.password).then(result => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
-      setError('');
-      setSuccess("Registration Successfully")
-      if (loggedUser)
-      {
-        updateUserProfile(data.name, data.photoURL).then(() => {   
-          const saveData = { name:data.name, image:data.photoURL, email:data.email, role: 'student',dete: new Date() };
-          axios.post('http://localhost:5000/students',saveData).then(res=>{
-            console.log(res.data)
-             if (res?.data?.insertedId) {
-               reset();
-               console.log(saveData);
-               Swal.fire({
-                 position: 'center',
-                 icon: 'success',
-                 title: 'Registration Successful',
-                 showConfirmButton: false,
-                 timer: 1000,
-               });
-                logOut();
-               navigate('/login');
-            
-             }
-            // navigate('/');
-          });
-        }).catch(error => {
-          setError(error.message)
-        })
-        
-      }
-    }).catch(error => {
-      setSuccess('')
-      setError(error.message)
-    })
+
+    signUpWithEmail(data.email, data.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        setError('');
+        setSuccess('Registration Successfully');
+        if (loggedUser) {
+          updateUserProfile(data.name, data.photoURL)
+            .then(() => {
+              const saveData = {
+                name: data.name,
+                image: data.photoURL,
+                email: data.email,
+                role: 'student',
+                dete: new Date(),
+              };
+              axios
+                .post(
+                  'https://best-teaching-home-server-abukawsar45.vercel.app/students',
+                  saveData
+                )
+                .then((res) => {
+                  console.log(res.data);
+                  if (res?.data?.insertedId) {
+                    reset();
+                    console.log(saveData);
+                    Swal.fire({
+                      position: 'center',
+                      icon: 'success',
+                      title: 'Registration Successful',
+                      showConfirmButton: false,
+                      timer: 1000,
+                    });
+                    logOut();
+                    navigate('/login');
+                  }
+                  // navigate('/');
+                });
+            })
+            .catch((error) => {
+              setError(error.message);
+            });
+        }
+      })
+      .catch((error) => {
+        setSuccess('');
+        setError(error.message);
+      });
   };
 
   return (

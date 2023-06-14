@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const MySelectedClassRow = ({ index, singleClass, refetch }) => {
   console.log(singleClass);
   const { orderClassImpage, orderClassName, classPrice } = singleClass;
-  console.log(classPrice)
+  console.log(classPrice);
 
   const handleDeletButton = (singleClass) => {
     console.log(singleClass);
@@ -22,11 +22,12 @@ const MySelectedClassRow = ({ index, singleClass, refetch }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/selectedClass/${singleClass?._id}`)
+          .delete(
+            `https://best-teaching-home-server-abukawsar45.vercel.app/selectedClass/${singleClass?._id}`
+          )
           .then((res) => {
             console.log(res.data);
-            if (res?.data?.deletedCount > 0)
-            {
+            if (res?.data?.deletedCount > 0) {
               refetch();
               Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
             }

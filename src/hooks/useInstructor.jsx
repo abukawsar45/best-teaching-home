@@ -1,13 +1,12 @@
-// http://localhost:5000/users/instructor/zakaria@gmail.com
+// https://best-teaching-home-server-abukawsar45.vercel.app/users/instructor/zakaria@gmail.com
 
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "./useAxiosSecure";
-import useProvider from "./useProvider";
-
+import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from './useAxiosSecure';
+import useProvider from './useProvider';
 
 const useInstructor = () => {
   const { user, loading } = useProvider();
-  console.log(user)
+  console.log(user);
   const [axiosSecure] = useAxiosSecure();
   const { data: isInstructor, isLoading: isInstructorLoading } = useQuery({
     queryKey: ['isInstructor', user?.email],
@@ -16,7 +15,7 @@ const useInstructor = () => {
       const response = await axiosSecure.get(
         `/users/instructor/${user?.email}`
       );
-      console.log('1999', response.data)
+      console.log('1999', response.data);
       return response.data.instructor;
     },
   });

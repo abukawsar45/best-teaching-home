@@ -1,8 +1,8 @@
-import { CardElement,  useElements, useStripe } from '@stripe/react-stripe-js';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useProvider from '../../../hooks/useProvider';
-import './CheckoutForm.css'
+import './CheckoutForm.css';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import useMySelectedClass from '../../../hooks/useMySelectedClass';
@@ -10,7 +10,7 @@ import useMySelectedClass from '../../../hooks/useMySelectedClass';
 const CheckoutForm = ({ price, singleClass }) => {
   // console.log(singleClass);
   // console.log(price);
-    const [, refetch] = useMySelectedClass();
+  const [, refetch] = useMySelectedClass();
   const { user } = useProvider();
   const stripe = useStripe();
   const elements = useElements();
@@ -25,9 +25,12 @@ const CheckoutForm = ({ price, singleClass }) => {
   useEffect(() => {
     if (price > 0) {
       axiosSecure
-        .post(`http://localhost:5000/paymentData?email=${user?.email}`, {
-          price,
-        })
+        .post(
+          `https://best-teaching-home-server-abukawsar45.vercel.app/paymentData?email=${user?.email}`,
+          {
+            price,
+          }
+        )
         .then((res) => {
           console.log(res.data);
           setClientSecret(res.data.clientSecret);
@@ -108,7 +111,7 @@ const CheckoutForm = ({ price, singleClass }) => {
           console.log(res.data.result);
           if (res?.data?.result?.modifiedCount > 0) {
             refetch();
-           Swal.fire('Payment Successfully', 'Saved', 'success');
+            Swal.fire('Payment Successfully', 'Saved', 'success');
             navigate('/dashboard/myEnrollClass');
           }
         });

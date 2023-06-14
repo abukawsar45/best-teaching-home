@@ -1,24 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { AiFillEdit } from 'react-icons/ai';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import useAxiosSecure from './../../../hooks/useAxiosSecure';
 
-const SingleMyClass = ({ info,refetch}) => {
-  console.log(info)
+const SingleMyClass = ({ info, refetch }) => {
+  console.log(info);
   const [axiosSecure] = useAxiosSecure();
-  const [totalEnroll, setTotalEnroll] = useState([])
-  console.log(10000,{totalEnroll})
+  const [totalEnroll, setTotalEnroll] = useState([]);
+  console.log(10000, { totalEnroll });
 
   useEffect(() => {
-    /* http://localhost:5000/totalPaidClass/648313e1573f3dbfa036a344?orderClassName=Moktob%20Every%20Morning */
-    axiosSecure.get(
-      `/totalPaidClass/${info._id}?orderClassName=${info.className} `
-    ).then(res=>{
-      console.log(res.data);
-      setTotalEnroll(res.data);
-      refetch();
-    })
-  },[])
+    /* https://best-teaching-home-server-abukawsar45.vercel.app/totalPaidClass/648313e1573f3dbfa036a344?orderClassName=Moktob%20Every%20Morning */
+    axiosSecure
+      .get(`/totalPaidClass/${info._id}?orderClassName=${info.className} `)
+      .then((res) => {
+        console.log(res.data);
+        setTotalEnroll(res.data);
+        refetch();
+      });
+  }, []);
 
   return (
     <div className='bg-base-200 my-4 grid grid-cols-1 md:grid-cols-2'>

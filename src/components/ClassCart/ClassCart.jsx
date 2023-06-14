@@ -1,23 +1,23 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import useProvider from "../../hooks/useProvider";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import useStudent from "../../hooks/useStudent";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import useProvider from '../../hooks/useProvider';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import useStudent from '../../hooks/useStudent';
 
 const ClassCart = ({ cart, refetch }) => {
   const [isStudent] = useStudent();
   const { user } = useProvider();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log({cart})
+  console.log({ cart });
 
   const [bookingClass, setBookingClass] = useState(true);
 
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/orderClass?email=${user?.email}&orderClassName=${cart?.className}`
+        `https://best-teaching-home-server-abukawsar45.vercel.app/orderClass?email=${user?.email}&orderClassName=${cart?.className}`
       )
       .then((res) => {
         // console.log(res.data);
@@ -39,9 +39,7 @@ const ClassCart = ({ cart, refetch }) => {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Login now',
       }).then((result) => {
-        if (result.isConfirmed)
-        {
-           
+        if (result.isConfirmed) {
           //  Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
           navigate('/login', { state: { from: location } });
         }
@@ -66,11 +64,13 @@ const ClassCart = ({ cart, refetch }) => {
       console.log(custormerInfo);
 
       axios
-        .post('http://localhost:5000/orderClass', custormerInfo)
+        .post(
+          'https://best-teaching-home-server-abukawsar45.vercel.app/orderClass',
+          custormerInfo
+        )
         .then((res) => {
           console.log(res.data);
-          if (res?.data?.insertedId)
-          {
+          if (res?.data?.insertedId) {
             refetch();
             console.log(custormerInfo);
 
@@ -104,9 +104,7 @@ const ClassCart = ({ cart, refetch }) => {
             </figure>
           </div>
           <div className='card-body'>
-            <h1 className='font-bold'>
-              Class Name: {cart?.className}{' '}
-            </h1>
+            <h1 className='font-bold'>Class Name: {cart?.className} </h1>
             <div className=' flex flex-col justify-end gap-6'>
               <div>
                 <h3 className='font-medium '>{cart?.instructorName} </h3>

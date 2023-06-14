@@ -1,4 +1,3 @@
-
 import useProvider from '../../../hooks/useProvider';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -7,64 +6,63 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const UpdateClass = () => {
- 
-  const [updateData,setUpdateData] = useState({})
+  const [updateData, setUpdateData] = useState({});
   const getData = useParams();
   const navigate = useNavigate();
-  console.log('------14' ,updateData)
+  console.log('------14', updateData);
 
-  const {user} = useProvider();
+  const { user } = useProvider();
   console.log(updateData, user);
 
+  useEffect(() => {
+    axios
+      .get(
+        `https://best-teaching-home-server-abukawsar45.vercel.app/class/${getData.id}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        setUpdateData(res.data);
+      });
+  }, []);
 
-    useEffect(() => {
-      axios
-        .get(`http://localhost:5000/class/${getData.id}`)
-        .then((res) => {
-          console.log(res.data);
-          setUpdateData(res.data);
-        });
-    }, []);
-
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm();
-    const onSubmit = (data) => {
-      const subjectData = {
-        ...data,
-        date: new Date(),
-        availableSeat: parseFloat(data.availableSeat),
-      };
-      
-      console.log(subjectData);
-      axios
-        .patch(`http://localhost:5000/updateClass/${getData.id}`, subjectData)
-        .then((res) => {
-          console.log(res.data);
-          if (res?.data?.modifiedCount > 0) {
-            //  reset();
-            Swal.fire(
-              'Updated Successfully',
-              'Saved',
-              'success');
-            navigate(`/dashboard/myclass/${user?.email}`);
-          } else {
-            Swal.fire({
-              title: 'Already Updated',
-              showClass: {
-                popup: 'animate__animated animate__fadeInDown',
-              },
-              hideClass: {
-                popup: 'animate__animated animate__fadeOutUp',
-              },
-            });
-          }
-          // navigate('/');
-        });
-     
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    const subjectData = {
+      ...data,
+      date: new Date(),
+      availableSeat: parseFloat(data.availableSeat),
     };
+
+    console.log(subjectData);
+    axios
+      .patch(
+        `https://best-teaching-home-server-abukawsar45.vercel.app/updateClass/${getData.id}`,
+        subjectData
+      )
+      .then((res) => {
+        console.log(res.data);
+        if (res?.data?.modifiedCount > 0) {
+          //  reset();
+          Swal.fire('Updated Successfully', 'Saved', 'success');
+          navigate(`/dashboard/myclass/${user?.email}`);
+        } else {
+          Swal.fire({
+            title: 'Already Updated',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown',
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp',
+            },
+          });
+        }
+        // navigate('/');
+      });
+  };
 
   return (
     <div>
@@ -78,7 +76,7 @@ const UpdateClass = () => {
               <input
                 type='text'
                 placeholder='class name'
-               defaultValue={updateData?.className}
+                defaultValue={updateData?.className}
                 {...register('className', { required: true })}
                 className='input input-bordered'
               />{' '}
@@ -93,7 +91,7 @@ const UpdateClass = () => {
               <input
                 type='text'
                 placeholder='class Image'
-               defaultValue={updateData.classImage}
+                defaultValue={updateData.classImage}
                 {...register('classImage', { required: true })}
                 className='input input-bordered'
               />{' '}
@@ -108,7 +106,7 @@ const UpdateClass = () => {
               <input
                 type='text'
                 placeholder='Available Seat'
-               defaultValue={updateData.availableSeat}
+                defaultValue={updateData.availableSeat}
                 {...register('availableSeat', { required: true })}
                 className='input input-bordered'
               />{' '}
@@ -123,7 +121,7 @@ const UpdateClass = () => {
               <input
                 type='text'
                 placeholder='fee'
-               defaultValue={updateData.price}
+                defaultValue={updateData.price}
                 {...register('price', { required: true })}
                 className='input input-bordered'
               />{' '}
@@ -148,9 +146,8 @@ const UpdateClass = () => {
               </label>
               <input
                 type='email'
-               
-               value={updateData.email}
-                {...register('email', { required: true } )}
+                value={updateData.email}
+                {...register('email', { required: true })}
                 className='input input-bordered'
               />{' '}
             </div>

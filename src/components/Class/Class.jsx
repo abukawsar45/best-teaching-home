@@ -1,19 +1,18 @@
-import ClassCart from "../ClassCart/ClassCart";
-import useAllClass from "../../hooks/useAllClass";
+import ClassCart from '../ClassCart/ClassCart';
+import useAllClass from '../../hooks/useAllClass';
 
 const Class = () => {
   const [allClassdata, refetch] = useAllClass();
 
+  // useEffect(() => {
+  //   axios.get('https://best-teaching-home-server-abukawsar45.vercel.app/allClass/').then((res) => {
+  //     console.log(res.data);
+  //     setAllClass(res.data);
+  //   });
+  // }, []);
 
-    // useEffect(() => {
-    //   axios.get('http://localhost:5000/allClass/').then((res) => {
-    //     console.log(res.data);
-    //     setAllClass(res.data);
-    //   });
-    // }, []);
-  
   console.log(allClassdata);
-  
+
   return (
     <div>
       <div>
@@ -28,6 +27,6 @@ const Class = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Class
+export default Class;

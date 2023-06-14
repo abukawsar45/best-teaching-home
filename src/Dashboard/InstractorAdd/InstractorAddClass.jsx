@@ -1,4 +1,3 @@
-
 import { useForm } from 'react-hook-form';
 import useProvider from '../../hooks/useProvider';
 
@@ -7,35 +6,39 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const InstractorAddClass = () => {
-  const {user} = useProvider();
-  console.log(user)
+  const { user } = useProvider();
+  console.log(user);
   const navigate = useNavigate();
 
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-    } = useForm();
-    const onSubmit = (data) => {
-      const subjectData = {
-        ...data,
-        instructorImage: `${user?.photoURL}`,
-        date: new Date(),
-        status: 'pending',
-        availableSeat: parseFloat(data.availableSeat),
-      };
-      
-      console.log(subjectData);
-      axios.post('http://localhost:5000/subjects', subjectData).then((res) => {
-         console.log(res.data);
-           if (res?.data?.insertedId) {
-             //  reset();
-             Swal.fire('Added Successfully', 'Saved', 'success');
-             navigate(`/dashboard/myclass/${user?.email}`);
-           }
-       });
-     
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    const subjectData = {
+      ...data,
+      instructorImage: `${user?.photoURL}`,
+      date: new Date(),
+      status: 'pending',
+      availableSeat: parseFloat(data.availableSeat),
     };
+
+    console.log(subjectData);
+    axios
+      .post(
+        'https://best-teaching-home-server-abukawsar45.vercel.app/subjects',
+        subjectData
+      )
+      .then((res) => {
+        console.log(res.data);
+        if (res?.data?.insertedId) {
+          //  reset();
+          Swal.fire('Added Successfully', 'Saved', 'success');
+          navigate(`/dashboard/myclass/${user?.email}`);
+        }
+      });
+  };
 
   return (
     <div>
@@ -116,7 +119,7 @@ const InstractorAddClass = () => {
               <input
                 type='email'
                 value={user?.email}
-                {...register('email', { required: true } )}
+                {...register('email', { required: true })}
                 className='input input-bordered'
               />{' '}
             </div>

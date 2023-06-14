@@ -4,7 +4,7 @@ import useAxiosSecure from './useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
 const useTotalEnroll = () => {
-  /* http://localhost:5000/totalPaidClass/648313e1573f3dbfa036a344?orderClassName=Moktob%20Every%20Morning */
+  /* https://best-teaching-home-server-abukawsar45.vercel.app/totalPaidClass/648313e1573f3dbfa036a344?orderClassName=Moktob%20Every%20Morning */
    const { user, loading } = useProvider();
    const [axiosSecure] = useAxiosSecure();
    const { refetch, data: totalEnroll = [] } = useQuery({

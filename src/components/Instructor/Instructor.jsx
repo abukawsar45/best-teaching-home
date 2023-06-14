@@ -7,7 +7,9 @@ const Instructor = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/students/instructor')
+      .get(
+        'https://best-teaching-home-server-abukawsar45.vercel.app/students/instructor'
+      )
       .then((res) => {
         console.log(res.data);
         setInstructors(res.data);
