@@ -56,7 +56,7 @@ const Header = () => {
   );
   return (
     <div className=''>
-      <div className='navbar bg-base-100'>
+      <div className='navbar max-w-screen-2xl lg:h-16 fixed z-50 text-white  bg-opacity-50 bg-base-100 xl:px-10 md:px-5 sm:px-2 px-1'>
         <div className='navbar-start'>
           <div className='dropdown'>
             <label tabIndex={0} className='btn btn-ghost lg:hidden'>

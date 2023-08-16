@@ -83,7 +83,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className='pt-16'>
       {' '}
       <div className=' min-h-screen bg-base-200'>
         <div className='hero-content flex-col md:flex-row md:justify-center'>

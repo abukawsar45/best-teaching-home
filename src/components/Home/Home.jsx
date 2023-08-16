@@ -39,7 +39,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className='pt-16'>
       <div className='w-full h-[200px] md:h-[400px] lg:h-[600px] relative '>
         <Swiper
           scrollbar={{
@@ -110,7 +110,6 @@ const Home = () => {
       <OurService />
       <div className='my-2 border-2 border-y-2 border-lime-400'></div>
       <CourseOverview/>
-      <div className='my-2 border-2 border-y-2 border-lime-400'></div>
       <div className='my-2 border-2 border-y-2 border-lime-400'></div>
       <Comment />
     </div>

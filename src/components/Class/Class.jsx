@@ -14,7 +14,7 @@ const Class = () => {
   ///console.log(allClassdata);
 
   return (
-    <div>
+    <div className='pt-16'>
       <div>
         <p className='text-2xl text-center my-4 text-sky-400'>
           All Classes Here: {allClassdata?.length}{' '}

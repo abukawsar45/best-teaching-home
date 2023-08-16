@@ -6,7 +6,11 @@ import useProvider from "../hooks/useProvider";
 const Main = () => {
   const {dark} = useProvider()
   return (
-    <div className={`relative mx-auto xl:px-10 md:px-5 sm:px-2 px-1 ${ dark?('bg-black text-white'): ('bg-lime-30 text-lime-300')} `} >
+    <div
+      className={`relative mx-auto max-w-screen-2xl ${
+        dark ? 'bg-black text-white' : 'bg-lime-30 text-lime-300'
+      } `}
+    >
       <Header />
       <Outlet />
       <Footer />

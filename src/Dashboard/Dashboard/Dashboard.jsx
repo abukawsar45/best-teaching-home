@@ -31,7 +31,7 @@ const Dashboard = () => {
   const [isStudent] = useStudent()
   ///console.log('admin', isAdmin,'ins',isInstructor,'st',isStudent )
 return (
-  <div className='drawer lg:drawer-open'>
+  <div className='pt-16 drawer lg:drawer-open'>
     <input id='my-drawer-2' type='checkbox' className='drawer-toggle' />
     <div className='drawer-content flex flex-col '>
       {/* Page content here */}

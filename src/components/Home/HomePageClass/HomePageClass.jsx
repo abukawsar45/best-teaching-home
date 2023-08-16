@@ -9,7 +9,7 @@ const HomePageClass = () => {
     <div>
       
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8'>
-        {allClassdata?.slice(0, 6).map((cart) => (
+        {allClassdata?.slice(0, 12).map((cart) => (
           <ClassCart key={cart._id} cart={cart} refetch={refetch} />
         ))}
       </div>
