@@ -8,7 +8,7 @@ const HomePopularInstructor = ({ instructor }) => {
         {/* Image */}
         <figure>
           <img
-            className='w-full object-cover rounded-full relative'
+            className='w-auto lg:w-full object-cover rounded-full relative'
             src={instructor?.image}
             alt='instructor photo'
           />
