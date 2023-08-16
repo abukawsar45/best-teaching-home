@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 #app {
   height: 100%;
 }
@@ -37,4 +40,12 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.course-title {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.free{
+  
+  font-family: 'Lobster', cursive;
 }

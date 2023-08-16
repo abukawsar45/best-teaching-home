@@ -12,6 +12,12 @@ import './Home.css';
 
 // import required modules
 import { Scrollbar } from 'swiper';
+import HomePopularInstructor from './PopularInstructor/HomePopularInstructor';
+import Comment from './Comment/Comment';
+import Class from './../Class/Class';
+import HomePageClass from './HomePageClass/HomePageClass';
+import OurService from './OurService/OurService';
+import CourseOverview from './CourseOverview';
 
 const Home = () => {
   const [popularData, setPopularData] = useState([]);
@@ -68,29 +74,45 @@ const Home = () => {
           ))}
         </Swiper>
       </div>
+      {/* Popular Class */}
       <div>
         <h2 className='text-5xl text-center my-4 md:my-8'>
+          <div className='my-2 border-2 border-y-2 border-lime-400'></div>
           Most Popular Class
+          <div className='my-2 border-2 border-y-2 border-lime-400'></div>
         </h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8'>
-          {popularDataClass?.slice(0, 6)?.map((popular) => (
+          {popularDataClass?.slice(0, 3)?.map((popular) => (
             <HomePopularClass key={popular.classId} popular={popular} />
           ))}
         </div>
       </div>
+      {/* popular Instructor */}
       <div>
         <h2 className='text-5xl text-center my-4 md:my-8'>
+          <div className='my-2 border-2 border-y-2 border-lime-400'></div>
           Most Popular Instructor
+          <div className='my-2 border-2 border-y-2 border-lime-400'></div>
         </h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8'>
-          {popularDataInstructor?.slice(0, 6)?.map((instructor) => (
-            <PopularInstructor
+          {popularDataInstructor?.slice(0, 3)?.map((instructor) => (
+            <HomePopularInstructor
               key={instructor.classId}
               instructor={instructor}
             />
           ))}
         </div>
       </div>
+      <div className='my-2 border-2 border-y-2 border-lime-400'></div>
+      <HomePageClass/>
+      <div className='my-2 border-2 border-y-2 border-lime-400'></div>
+      {/* comment part */ }
+      <OurService />
+      <div className='my-2 border-2 border-y-2 border-lime-400'></div>
+      <CourseOverview/>
+      <div className='my-2 border-2 border-y-2 border-lime-400'></div>
+      <div className='my-2 border-2 border-y-2 border-lime-400'></div>
+      <Comment />
     </div>
   );
 };
