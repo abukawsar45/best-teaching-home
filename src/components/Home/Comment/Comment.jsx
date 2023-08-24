@@ -1,13 +1,43 @@
+import { useRef } from 'react';
 import Swal from 'sweetalert2';
-import './Comment.css'
+import './Comment.css';
+import emailjs from 'emailjs-com'
 
 const Comment = () => {
 
-  const handleAddReview = (e) => {
-    e.preventDefault(); // Corrected spelling
-    console.log('first');
-     Swal.fire('Thanks for your comment', 'Sent successfully', 'success');
-  };
+  // console.log(import.meta.env);
+  const form = useRef();
+    const sendEmail = (e) => {
+      e.preventDefault();
+
+      emailjs
+        .sendForm(
+          import.meta.env.VITE_SERVICE_ID,
+          import.meta.env.VITE_TEMPLATE_ID,
+          form.current,
+          import.meta.env.VITE_PUBLIC_KEY
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+            Swal.fire(
+              'Thanks for your comment',
+              'Sent successfully',
+              'success'
+            );
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    };
+
+
+  // const handleAddReview = (e) => {
+  //   e.preventDefault(); // Corrected spelling
+  //   console.log('first');
+  //    Swal.fire('Thanks for your comment', 'Sent successfully', 'success');
+  // };
 
 
   return (
@@ -19,15 +49,17 @@ const Comment = () => {
       </div>
       <div className='grid grid-cols-12 py-5 lg:py-8'>
         <div className='col-span-12 lg:col-span-8 px-4 lg:px-6'>
-          <form onSubmit={handleAddReview} action=''>
+          <form ref={form} onSubmit={sendEmail} action=''>
             <div className='md:flex justify-between'>
               <div className='mb-4'>
                 <label className='input-group'>
                   <span>Name</span>
                   <input
                     type='text'
+                    name='name'
                     placeholder='Full Name'
                     className='input input-bordered  w-full'
+                    required
                   />
                 </label>
               </div>
@@ -36,8 +68,10 @@ const Comment = () => {
                   <span>Email</span>
                   <input
                     type='email'
+                    name='email'
                     placeholder='abc@gmail.com'
                     className='input input-bordered w-full'
+                    required
                   />
                 </label>
               </div>
@@ -48,8 +82,10 @@ const Comment = () => {
                   <span>Comment</span>
                   <textarea
                     type='text'
+                    name='message'
                     placeholder='type here'
                     className='textarea  w-full'
+                    required
                   />
                 </label>
               </div>
