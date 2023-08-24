@@ -97,7 +97,7 @@ const Home = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8'>
           {popularDataInstructor?.slice(0, 3)?.map((instructor) => (
             <HomePopularInstructor
-              key={instructor.classId}
+              key={instructor.classId+'a'}
               instructor={instructor}
             />
           ))}

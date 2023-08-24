@@ -25,6 +25,7 @@ const Comment = () => {
               'Sent successfully',
               'success'
             );
+            form.current.reset();
           },
           (error) => {
             console.log(error.text);
@@ -44,7 +45,7 @@ const Comment = () => {
     <div className='bg-lime-700 hover:bg-lime-800 my-6'>
       <div className='py-4 md:py-5'>
         <h2 className='text-center text-3xl font-semibold comment-title'>
-          Add a Comment
+          Contact Us
         </h2>
       </div>
       <div className='grid grid-cols-12 py-5 lg:py-8'>
