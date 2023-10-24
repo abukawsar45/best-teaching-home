@@ -1,4 +1,4 @@
-import React from 'react';
+
 import ClassCart from '../../ClassCart/ClassCart';
 import useAllClass from '../../../hooks/useAllClass';
 import { Link } from 'react-router-dom';
@@ -15,9 +15,9 @@ const HomePageClass = () => {
       </div>
       <div className='my-4 text-center'>
         <Link to='/class'>
-          <button className='text-center hover:text-amber-950 bg-emerald-400 hover:bg-emerald-500 rounded-full uppercase py-2 w-32'>
+          {allClassdata.length!=0 ?  <button className='text-center hover:text-amber-950 bg-emerald-400 hover:bg-emerald-500 rounded-full uppercase py-2 w-32'>
             see all{' '}
-          </button>
+          </button> : ''}
         </Link>
       </div>
     </div>

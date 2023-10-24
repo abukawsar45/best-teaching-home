@@ -4,11 +4,12 @@ import Footer from "../shared/Footer/Footer";
 import useProvider from "../hooks/useProvider";
 
 const Main = () => {
-  const {dark} = useProvider()
+  const { dark } = useProvider();
+  console.log(import.meta.env);
   return (
     <div
-      className={`relative mx-auto max-w-screen-2xl ${
-        dark ? 'bg-black text-white' : 'bg-lime-30 text-lime-300'
+      className={`relative px-2 md:px-4 lg:px-8 max-w-screen-2xl ${
+        dark ? 'bg-neutral-800 text-zinc-200' : 'bg-black text-lime-300'
       } `}
     >
       <Header />
