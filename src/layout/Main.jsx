@@ -5,7 +5,6 @@ import useProvider from "../hooks/useProvider";
 
 const Main = () => {
   const { dark } = useProvider();
-  console.log(import.meta.env);
   return (
     <div
       className={`relative px-2 md:px-4 lg:px-8 max-w-screen-2xl ${

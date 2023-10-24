@@ -19,7 +19,7 @@ const Comment = () => {
         )
         .then(
           (result) => {
-            console.log(result.text);
+            // console.log(result.text);
             Swal.fire(
               'Thanks for your comment',
               'Sent successfully',

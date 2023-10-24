@@ -13,7 +13,7 @@ import {
 const queryClient = new QueryClient()
 
 const ab =ReactDOM.createRoot(document.getElementById('root'))
-console.log(ab)
+// console.log(ab)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

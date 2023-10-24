@@ -22,10 +22,6 @@ export default {
           warning: '#ccae14',
 
           error: '#f07a6a',
-
-          dark: '#000',
-
-          day: '#fff'
         },
       },
     ],

@@ -3,7 +3,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 import CartTitle from '../../../utilities/CartTitle/CartTitle';
 
 const HomePopularInstructor = ({ instructor }) => {
-  console.log(instructor)
+  // console.log(instructor)
   return (
     <div className='my-0 mx-4 md:pb-28  lg:p-0 group'>
       <div className='card w-96 relative'>

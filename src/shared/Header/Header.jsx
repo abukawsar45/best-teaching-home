@@ -17,26 +17,26 @@ const Header = () => {
   const navOptions = (
     <>
       {' '}
-      <li>
+      <li className='font-bold'>
         {' '}
         <ActiveLink to='/'>Home</ActiveLink>
       </li>
-      <li>
+      <li className='font-bold'>
         {' '}
         <ActiveLink to='/instructor'>Instructor</ActiveLink>
       </li>
-      <li>
+      <li className='font-bold'>
         {' '}
         <ActiveLink to='/class'>Class</ActiveLink>
       </li>
       {user ? (
         <>
           {' '}
-          <li>
+          <li className='font-bold'>
             {' '}
             <ActiveLink to='/dashboard'>Dashboard</ActiveLink>
           </li>
-          <li>
+          <li className='font-bold'>
             {' '}
             <button onClick={handleLogOut} to='/'>
               Logout
@@ -46,11 +46,11 @@ const Header = () => {
       ) : (
         <>
           {' '}
-          <li>
+          <li className='font-bold'>
             {' '}
             <ActiveLink to='/login'>Login</ActiveLink>
           </li>
-          <li>
+          <li className='font-bold'>
             {' '}
             <ActiveLink to='/register'>Register</ActiveLink>
           </li>
