@@ -7,9 +7,7 @@ const Main = () => {
   const { dark } = useProvider();
   return (
     <div
-      className={`relative px-2 md:px-4 lg:px-8 max-w-screen-2xl ${
-        dark ? 'bg-neutral-800 text-zinc-200' : 'bg-black text-lime-300'
-      } `}
+      className={`relative px-2 md:px-4 lg:px-8 max-w-screen-2xl  `}
     >
       <Header />
       <Outlet />

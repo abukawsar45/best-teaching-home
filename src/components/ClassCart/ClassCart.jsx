@@ -4,8 +4,11 @@ import useProvider from '../../hooks/useProvider';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import useStudent from '../../hooks/useStudent';
+import { FaInfoCircle } from 'react-icons/fa';
+
 
 const ClassCart = ({ cart, refetch }) => {
+  const { dark } = useProvider();
   const [isStudent] = useStudent();
   const { user } = useProvider();
   const navigate = useNavigate();
@@ -90,36 +93,67 @@ const ClassCart = ({ cart, refetch }) => {
   return (
     <>
       <div
-        className={`card w-96 my-2 md:my-6 lg:my-10  ${
-          cart?.availableSeat > 0 ? 'bg-base-200' : 'bg-red-700'
+        className={`card relative w-96 my-2 md:my-6 lg:my-10  transition duration-300  ${
+          dark ? 'bg-neutral-800 text-zinc-100' : 'bg-slate-50 text-slate-900'
         }`}
       >
-        <div className='mt-5 grid grid-cols-1'>
-          <div>
-            <figure>
-              <img
-                src={cart?.classImage}
-                className='object-fill h-[200px] rounded-lg shadow-2xl '
-              />
-            </figure>
-          </div>
-          <div className='card-body'>
-            <h1 className='font-bold'>Class Name: {cart?.className} </h1>
-            <div className=' flex flex-col justify-end gap-6'>
-              <div>
-                <h3 className='font-medium '>{cart?.instructorName} </h3>
-                <h3 className='font-medium '>{cart?.email} </h3>
-              </div>
-              <div>
-                <h3 className='font-medium '>
-                  Available Seat: {cart?.availableSeat}{' '}
-                </h3>
-                <h3 className='font-medium '>Price: $ {cart?.price} </h3>
-              </div>
+        <div
+          className={` card ${
+            cart?.availableSeat > 0 ? '' : 'bg-red-700'
+          } `}
+        >
+          <Link to={`/classDetails/${cart?._id}`}>
+            <button className='group rounded-lg md:absolute -left-[2%] -top-[2%] bg-gradient-to-br from-[#0076CE] to-[#9400D3] p-2'>
+              <FaInfoCircle className='text-4xl text-white group-hover:text-slate-300' />
+            </button>
+          </Link>
+          <div className='mt-5 grid grid-cols-1'>
+            <div>
+              <figure>
+                <img
+                  src={cart?.classImage}
+                  className='object-fill h-[200px] rounded-lg shadow-2xl '
+                />
+              </figure>
+            </div>
+            <div className='card-body'>
+              <h1 className='font-bold'>Class Name: {cart?.className} </h1>
+              <div className=' flex flex-col justify-end gap-6'>
+                <div>
+                  <h3 className='font-medium '>{cart?.instructorName} </h3>
+                  <h3 className='font-medium '>{cart?.email} </h3>
+                </div>
+                <div>
+                  <h3 className='font-medium '>
+                    Available Seat: {cart?.availableSeat}{' '}
+                  </h3>
+                  <h3 className='font-medium '>Price: $ {cart?.price} </h3>
+                </div>
 
-              <div className=''>
-                {!user || isStudent ? (
-                  bookingClass ? (
+                <div className=''>
+                  {!user || isStudent ? (
+                    bookingClass ? (
+                      <>
+                        {' '}
+                        <button disabled className='btn w-full btn-primary'>
+                          {' '}
+                          Selected
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        {' '}
+                        <Link
+                          onClick={() => handleSelectButton(cart)}
+                          className='btn w-full btn-primary'
+                          disabled={cart?.availableSeat === 0}
+                        >
+                          {' '}
+                          Select
+                        </Link>
+                      </>
+                    )
+                  ) : (
                     <>
                       {' '}
                       <button disabled className='btn w-full btn-primary'>
@@ -127,33 +161,12 @@ const ClassCart = ({ cart, refetch }) => {
                         Selected
                       </button>
                     </>
-                  ) : (
-                    <>
-                      {' '}
-                      <Link
-                        onClick={() => handleSelectButton(cart)}
-                        className='btn w-full btn-primary'
-                        disabled={cart?.availableSeat === 0}
-                      >
-                        {' '}
-                        Select
-                      </Link>
-                    </>
-                  )
-                ) : (
-                  <>
-                    {' '}
-                    <button disabled className='btn w-full btn-primary'>
-                      {' '}
-                      Selected
-                    </button>
-                  </>
-                )}
+                  )}
+                </div>
               </div>
-            </div>
 
-            <div className='mt-2 md:mt-6 lg:mt-8'>
-              {/* {isStudent ||(
+              <div className='mt-2 md:mt-6 lg:mt-8'>
+                {/* {isStudent ||(
                 <>
                   {' '}
                   <button disabled className='btn w-full btn-primary'>
@@ -162,6 +175,7 @@ const ClassCart = ({ cart, refetch }) => {
                   </button>
                 </>
               ) } */}
+              </div>
             </div>
           </div>
         </div>

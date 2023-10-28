@@ -20,6 +20,7 @@ import PaymentHistory from "../Dashboard/Dashboard/PaymentHistory/PaymentHistory
 import AdminSecure from "../private/AdminSecure";
 import InstructorSecure from './../private/InstructorSecure';
 import DashboardHome from "../Dashboard/Dashboard/DashboardHome/DashboardHome";
+import ClassDetails from "../components/ClassDetails/ClassDetails";
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: '/class',
         element: <Class />,
+      },
+      {
+        path: '/classDetails/:id',
+        element: <ClassDetails />,
       },
       {
         path: '/login',
