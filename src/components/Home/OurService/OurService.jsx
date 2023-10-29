@@ -3,7 +3,7 @@ import { TfiPencilAlt } from 'react-icons/tfi';
 import { TbHeartRateMonitor } from 'react-icons/tb';
 const OurService = () => {
   return (
-    <div className='bg-gray-600  hover:bg-gray-700'>
+    <div data-aos='fade-up' className='bg-gray-600  hover:bg-gray-700'>
       <div>
         <h3 className='py-4 text-center font-semibold text-4xl  course-title'>
           Our Services

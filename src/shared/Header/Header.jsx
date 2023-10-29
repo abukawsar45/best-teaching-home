@@ -59,8 +59,12 @@ const Header = () => {
     </>
   );
   return (
-    <div className=''>
-      <div className={`navbar max-w-screen-2xl lg:h-16 fixed z-50 ${dark ? 'bg-neutral-800 text-zinc-100' : 'bg-slate-50 text-slate-900'} bg-opacity-50 xl:px-10 md:px-5 sm:px-2 px-1 transition-colors duration-300 ease-in   backdrop-blur-sm`}>
+    <div  className=''>
+      <div
+        className={`navbar max-w-screen-2xl lg:h-16 fixed z-50 ${
+          dark ? 'bg-neutral-800 text-zinc-100' : 'bg-slate-50 text-slate-900'
+        } bg-opacity-50 xl:px-10 md:px-5 sm:px-2 px-1 transition-colors duration-300 ease-in   backdrop-blur-sm`}
+      >
         <div className='navbar-start'>
           <div className='dropdown'>
             <label tabIndex={0} className='btn btn-ghost lg:hidden'>
@@ -104,10 +108,18 @@ const Header = () => {
             <label className='label cursor-pointer'>
               <div className='mr-2'>
                 <span className='label-text'>
-                  {isToggled ? '' : <BsFillSunFill className='transition-transform duration-100 text-gray-300 text-2xl' />}{' '}
+                  {isToggled ? (
+                    ''
+                  ) : (
+                    <BsFillSunFill className='transition-transform duration-100 text-gray-300 text-2xl' />
+                  )}{' '}
                 </span>
                 <span className='label-text'>
-                  {isToggled ? <BsMoon className='transition-transform duration-100 text-white text-2xl' /> : ''}{' '}
+                  {isToggled ? (
+                    <BsMoon className='transition-transform duration-100 text-white text-2xl' />
+                  ) : (
+                    ''
+                  )}{' '}
                 </span>
               </div>
               <input

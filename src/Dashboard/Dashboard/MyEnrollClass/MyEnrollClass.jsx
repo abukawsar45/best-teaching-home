@@ -9,7 +9,7 @@ const MyEnrollClass = () => {
       <table className='table'>
         {/* head */}
         <thead>
-          <tr className='text-center'>
+          <tr className='text-center '>
             <th>#</th>
             <th>Image</th>
             <th>Instructor Name</th>

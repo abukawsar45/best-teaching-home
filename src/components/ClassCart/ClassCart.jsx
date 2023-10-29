@@ -5,6 +5,11 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import useStudent from '../../hooks/useStudent';
 import { FaInfoCircle } from 'react-icons/fa';
+import './ClassCart.css';
+import { AiOutlineMail } from 'react-icons/ai';
+import { MdEventSeat } from 'react-icons/md';
+import { BsCurrencyDollar } from 'react-icons/bs';
+
 
 
 const ClassCart = ({ cart, refetch }) => {
@@ -80,7 +85,7 @@ const ClassCart = ({ cart, refetch }) => {
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: 'Thanks for selecting',
+              title: 'Select Successful',
               showConfirmButton: false,
               timer: 1000,
             });
@@ -93,21 +98,26 @@ const ClassCart = ({ cart, refetch }) => {
   return (
     <>
       <div
-        className={`card relative w-96 my-2 md:my-6 lg:my-10  transition duration-300  ${
+        data-aos='fade-up'
+        className={`  card relative w-96 my-2  md:my-6 lg:my-6  transition duration-200   hover:shadow-md hover:shadow-slate-700 rounded-lg ${
           dark ? 'bg-neutral-800 text-zinc-100' : 'bg-slate-50 text-slate-900'
         }`}
       >
         <div
-          className={` card ${
+          className={` rounded-lg card ${
             cart?.availableSeat > 0 ? '' : 'bg-red-700'
           } `}
         >
           <Link to={`/classDetails/${cart?._id}`}>
-            <button className='group rounded-lg md:absolute -left-[2%] -top-[2%] bg-gradient-to-br from-[#0076CE] to-[#9400D3] p-2'>
+            <button
+              className={`${
+                cart?.availableSeat > 0 ? '' : 'hidden'
+              } group rounded-lg md:absolute -left-[2%] -top-[2%] bg-gradient-to-br from-[#0076CE] to-[#9400D3] p-2`}
+            >
               <FaInfoCircle className='text-4xl text-white group-hover:text-slate-300' />
             </button>
           </Link>
-          <div className='mt-5 grid grid-cols-1'>
+          <div className='mt-5 '>
             <div>
               <figure>
                 <img
@@ -116,23 +126,62 @@ const ClassCart = ({ cart, refetch }) => {
                 />
               </figure>
             </div>
-            <div className='card-body'>
-              <h1 className='font-bold'>Class Name: {cart?.className} </h1>
-              <div className=' flex flex-col justify-end gap-6'>
-                <div>
-                  <h3 className='font-medium '>{cart?.instructorName} </h3>
-                  <h3 className='font-medium '>{cart?.email} </h3>
-                </div>
-                <div>
-                  <h3 className='font-medium '>
-                    Available Seat: {cart?.availableSeat}{' '}
-                  </h3>
-                  <h3 className='font-medium '>Price: $ {cart?.price} </h3>
-                </div>
+            <div>
+              <div className='card-body'>
+                <div className=' flex flex-col justify-end  gap-3'>
+                  <div>
+                    <h1 className='title-font text-xl mb-2'>
+                      {cart?.className}
+                    </h1>
+                    <h3 className='instructor-font text-xl '>
+                      {cart?.instructorName}{' '}
+                    </h3>
+                    <h3 className='font-medium flex items-center gap-2'>
+                      <span className='text-sm text-blue-400'>
+                        <AiOutlineMail />
+                      </span>{' '}
+                      : {cart?.email}{' '}
+                    </h3>
+                  </div>
+                  <div>
+                    <h3 className='text-xl flex items-center gap-2'>
+                      <span className=' text-blue-400'>
+                        <MdEventSeat />
+                      </span>{' '}
+                      : {cart?.availableSeat}{' '}
+                    </h3>
+                    <h3 className='text-xl flex items-center gap-2'>
+                      <span className=' text-blue-400'>
+                        <BsCurrencyDollar />
+                      </span>{' '}
+                      : {cart?.price}{' '}
+                    </h3>
+                  </div>
 
-                <div className=''>
-                  {!user || isStudent ? (
-                    bookingClass ? (
+                  <div className=''>
+                    {!user || isStudent ? (
+                      bookingClass ? (
+                        <>
+                          {' '}
+                          <button disabled className='btn w-full btn-primary'>
+                            {' '}
+                            Selected
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          {' '}
+                          <Link
+                            onClick={() => handleSelectButton(cart)}
+                            className='btn w-full btn-primary'
+                            disabled={cart?.availableSeat === 0}
+                          >
+                            {' '}
+                            Select
+                          </Link>
+                        </>
+                      )
+                    ) : (
                       <>
                         {' '}
                         <button disabled className='btn w-full btn-primary'>
@@ -140,41 +189,9 @@ const ClassCart = ({ cart, refetch }) => {
                           Selected
                         </button>
                       </>
-                    ) : (
-                      <>
-                        {' '}
-                        <Link
-                          onClick={() => handleSelectButton(cart)}
-                          className='btn w-full btn-primary'
-                          disabled={cart?.availableSeat === 0}
-                        >
-                          {' '}
-                          Select
-                        </Link>
-                      </>
-                    )
-                  ) : (
-                    <>
-                      {' '}
-                      <button disabled className='btn w-full btn-primary'>
-                        {' '}
-                        Selected
-                      </button>
-                    </>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
-
-              <div className='mt-2 md:mt-6 lg:mt-8'>
-                {/* {isStudent ||(
-                <>
-                  {' '}
-                  <button disabled className='btn w-full btn-primary'>
-                    {' '}
-                    Selected
-                  </button>
-                </>
-              ) } */}
               </div>
             </div>
           </div>

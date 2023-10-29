@@ -24,6 +24,8 @@ const Home = () => {
   const { result: popularDataClass, result2: popularDataInstructor } =
     popularData || {};
 
+
+
   // ///console.log(popularDataInstructor);
   ///console.log(popularData);
   // const { result, result2 } = popularData || [];
@@ -39,9 +41,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='pt-16'>
-      <div className='w-full h-[200px] md:h-[400px] lg:h-[600px] relative '>
+    <div data-aos='fade-up' className='pt-16'>
+      <div
+        data-aos='fade-up'
+        className='w-full h-[200px] md:h-[400px] lg:h-[600px] relative '
+      >
         <Swiper
+          data-aos='fade-up'
           scrollbar={{
             hide: true,
           }}
@@ -75,7 +81,7 @@ const Home = () => {
         </Swiper>
       </div>
       {/* Popular Class */}
-      <div>
+      <div data-aos='fade-up'>
         <h2 className='text-5xl text-center my-4 md:my-8'>
           <div className='my-2 border-2 border-y-2 border-lime-400'></div>
           Most Popular Class
@@ -88,28 +94,33 @@ const Home = () => {
         </div>
       </div>
       {/* popular Instructor */}
-      <div>
+      <div data-aos='fade-up'>
         <h2 className='text-5xl text-center my-4 md:my-8'>
           <div className='my-2 border-2 border-y-2 border-lime-400'></div>
           Most Popular Instructor
           <div className='my-2 border-2 border-y-2 border-lime-400'></div>
         </h2>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8'>
+        <div
+          data-aos='fade-up'
+          className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8'
+        >
           {popularDataInstructor?.slice(0, 3)?.map((instructor) => (
             <HomePopularInstructor
-              key={instructor.classId+'a'}
+              key={instructor.classId + 'a'}
               instructor={instructor}
             />
           ))}
         </div>
       </div>
       <div className='my-2 border-2 border-y-2 border-lime-400'></div>
-      <HomePageClass/>
+      
+        <HomePageClass />
+      
       <div className='my-2 border-2 border-y-2 border-lime-400'></div>
-      {/* comment part */ }
+      {/* comment part */}
       <OurService />
       <div className='my-2 border-2 border-y-2 border-lime-400'></div>
-      <CourseOverview/>
+      <CourseOverview />
       <div className='my-2 border-2 border-y-2 border-lime-400'></div>
       <Comment />
     </div>

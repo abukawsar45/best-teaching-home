@@ -5,7 +5,7 @@ import CartTitle from '../../../utilities/CartTitle/CartTitle';
 const HomePopularInstructor = ({ instructor }) => {
   // console.log(instructor)
   return (
-    <div className='my-0 mx-4 md:pb-28  lg:p-0 group'>
+    <div data-aos='fade-up' className='my-0 mx-4 md:pb-28  lg:p-0 group'>
       <div className='card w-96 relative'>
         {/* Image */}
         <div className=' mt-4 md:mx-auto py-4 px-2  '>

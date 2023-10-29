@@ -2,7 +2,10 @@ import { AiOutlineCheck } from 'react-icons/ai';
 
 const CourseOverview = () => {
   return (
-    <div className='my-4 py-6 bg-slate-600 hover:bg-slate-700'>
+    <div
+      data-aos='fade-up'
+      className='my-4 py-6 bg-slate-600 hover:bg-slate-700'
+    >
       <div>
         <h3 className='py-4 text-center font-semibold text-4xl  course-title'>
           Our Course Overview

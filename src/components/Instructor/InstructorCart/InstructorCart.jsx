@@ -3,7 +3,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 
 const InstructorCart = ({ instructor }) => {
   return (
-    <div className='my-4 group'>
+    <div data-aos='fade-up' className='my-4 group'>
       <div className='md:hidden card w-96 mx-4 glass'>
         <div className=''>
           <CartTitle name={instructor?.name} />

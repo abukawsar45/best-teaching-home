@@ -22,7 +22,7 @@ const Instructor = () => {
   }, []); // Empty dependency array ensures the effect runs only once on mount
 
   return (
-    <div className='pt-16'>
+    <div data-aos='fade-up' className='pt-16'>
       <h3 className='text-center text-5xl my-5'>
         Total Instructor: {instructors.length || 0}
       </h3>

@@ -1,11 +1,17 @@
+import useProvider from "../../hooks/useProvider";
 
 
 const HomePopularClass = ({ popular }) => {
+  const { dark } = useProvider();
   ///console.log(popular);
   const { orderClassImage, orderClassName, orderClassPrice, count } = popular;
   return (
     <>
-      <div className='card w-96 bg-base-100 my-5 shadow-xl'>
+      <div
+        className={`card w-96 bg-base-100  hover:shadow-md hover:shadow-slate-700 duration-200 rounded-lg my-5 shadow-xl  ${
+          dark ? 'bg-slate-900 text-white' : 'bg-slate-200 text-black'
+        } `}
+      >
         <figure className='mt-5'>
           <img src={orderClassImage} alt='class' />
         </figure>

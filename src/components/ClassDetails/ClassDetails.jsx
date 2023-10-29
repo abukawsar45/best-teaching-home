@@ -10,88 +10,92 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const ClassDetails = () => {
+  const { id: selectedId } = useParams();
+  // console.log(selectedId);
+
   const [allClassdata, refetch] = useAllClass();
   const [getClassData, setGetClassData] = useState({});
-    const {user, dark } = useProvider();
-    const [isStudent] = useStudent();
-    const navigate = useNavigate();
-    const location = useLocation();
+  const { user, dark } = useProvider();
+  const [isStudent] = useStudent();
+  const navigate = useNavigate();
+  const location = useLocation();
   // console.log(getClassData);
   const [withoutClass, setWithoutClass] = useState([]);
+  // console.log(withoutClass)
 
   const [bookingClass, setBookingClass] = useState(true);
-    useEffect(() => {
+  useEffect(() => {
+    axios
+      .get(
+        `https://best-teaching-home-server-abukawsar45.vercel.app/orderClass?email=${user?.email}&orderClassName=${getClassData?.className}`
+      )
+      .then((res) => {
+        // ///console.log(res.data);
+        setBookingClass(res.data.orderClassNameExists);
+        // `orderClass?email=${user?.email}&orderClassName=${}`
+      });
+  }, [getClassData?.className, user?.email]);
+
+  ///console.log(bookingClass);
+
+  const handleSelectButton = (cart) => {
+    if (!user) {
+      Swal.fire({
+        title: 'Please Login?',
+        text: 'At first login,then select!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Login now',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          //  Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+          navigate('/login', { state: { from: location } });
+        }
+      });
+    } else {
+      ///console.log(cart);
+      const custormerInfo = {
+        customerName: user?.displayName,
+        customerEmail: user?.email,
+        orderClassName: cart?.className,
+        orderClassImpage: cart?.classImage,
+        orderClassPrice: parseFloat(cart?.price),
+        instructorName: cart?.instructorName,
+        classId: cart?._id,
+        status: 'selected',
+        selectedDate: new Date(),
+        classPrice: cart?.price,
+        instructorEmail: cart?.email,
+        instructorImage: cart?.instructorImage,
+        // instructorImage:
+      };
+      ///console.log(custormerInfo);
+
       axios
-        .get(
-          `https://best-teaching-home-server-abukawsar45.vercel.app/orderClass?email=${user?.email}&orderClassName=${getClassData?.className}`
+        .post(
+          'https://best-teaching-home-server-abukawsar45.vercel.app/orderClass',
+          custormerInfo
         )
         .then((res) => {
-          // ///console.log(res.data);
-          setBookingClass(res.data.orderClassNameExists);
-          // `orderClass?email=${user?.email}&orderClassName=${}`
-        });
-    }, [getClassData?.className, user?.email]);
+          ///console.log(res.data);
+          if (res?.data?.insertedId) {
+            refetch();
+            ///console.log(custormerInfo);
 
-    ///console.log(bookingClass);
-
-    const handleSelectButton = (cart) => {
-      if (!user) {
-        Swal.fire({
-          title: 'Please Login?',
-          text: 'At first login,then select!',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Login now',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            //  Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
-            navigate('/login', { state: { from: location } });
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'select successfully',
+              showConfirmButton: false,
+              timer: 1000,
+            });
+            setBookingClass(true);
           }
         });
-      } else {
-        ///console.log(cart);
-        const custormerInfo = {
-          customerName: user?.displayName,
-          customerEmail: user?.email,
-          orderClassName: cart?.className,
-          orderClassImpage: cart?.classImage,
-          orderClassPrice: parseFloat(cart?.price),
-          instructorName: cart?.instructorName,
-          classId: cart?._id,
-          status: 'selected',
-          selectedDate: new Date(),
-          classPrice: cart?.price,
-          instructorEmail: cart?.email,
-          instructorImage: cart?.instructorImage,
-          // instructorImage:
-        };
-        ///console.log(custormerInfo);
-
-        axios
-          .post(
-            'https://best-teaching-home-server-abukawsar45.vercel.app/orderClass',
-            custormerInfo
-          )
-          .then((res) => {
-            ///console.log(res.data);
-            if (res?.data?.insertedId) {
-              refetch();
-              ///console.log(custormerInfo);
-
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Thanks for selecting',
-                showConfirmButton: false,
-                timer: 1000,
-              });
-              setBookingClass(true);
-            }
-          });
-      }
-    };
+    }
+  };
 
   const {
     availableSeat,
@@ -106,14 +110,11 @@ const ClassDetails = () => {
     _id,
   } = getClassData || {};
 
-  const { id: selectedId } = useParams();
-  console.log(selectedId);
-
   useEffect(() => {
-    setWithoutClass(true);
-    const specificCard = allClassdata.find((card) => card?._id == selectedId);
+    // setWithoutClass(true);
+    const specificClass = allClassdata.find((card) => card?._id == selectedId);
     //  console.log(specificCard);
-    setGetClassData(specificCard);
+    setGetClassData(specificClass);
     const withoutSpecificCard = allClassdata.filter(
       (card) => card._id != selectedId
     );
@@ -122,16 +123,20 @@ const ClassDetails = () => {
   }, [selectedId]);
 
   return (
-    <div className='pt-20 md:pt-28 pb-6'>
+    <div data-aos='fade-up' className=' pt-20 md:pt-28'>
       <div className=''>
         <div>
           <div className='grid  grid-cols-12 gap-3 md:gap-5 lg:gap-8'>
             <div className='col-span-12 md:col-span-5'>
               <div>
                 <h3 className='text-4xl font-bold'>{className}</h3>
-                <div className='flex flex-col gap-2 md:gap-4  my-3 md:my-6 lg:my-8 bg-gray-50 p-2 md:p-4 lg:p-6 shadow-lg shadow-slate-300 rounded-lg'>
+                <div
+                  className={` ${
+                    dark ? 'bg-slate-900 text-white' : 'bg-slate-200 text-black'
+                  }  flex flex-col gap-2 md:gap-4  my-3 md:my-6 lg:my-8  p-2 md:p-4 lg:p-6 shadow-lg shadow-slate-300 rounded-lg `}
+                >
                   <p className='text-2xl '>Instructor Name: {instructorName}</p>
-                  <p className='text-2xl font-bold'>Fee: {price} </p>
+                  <p className='text-2xl font-bold'>Fee: {price} $</p>
 
                   <p className='text-xl'>AvailableSeat: {availableSeat}</p>
                   {
@@ -186,20 +191,15 @@ const ClassDetails = () => {
             </div>
           </div>
           {/* recommended part */}
-          <div className='my-4 md:my-8 lg:my-32'>
+          <div data-aos='fade-up' className='my-4 md:my-8 lg:my-32'>
             <h3 className='text-4xl font-bold my-3 md:my-5 lg:my-8'>
               Recommended for you
             </h3>
-            {/* <div className=' grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-8'>
-              {allClassdata?.slice(0, 3)?.map((item) => (
-                <RecommendedClass
-                  key={item._id}
-                  setSelectedClass={setSelectedCard}
-                  selectedClass={selectedCard}
-                  item={item}
-                />
+            <div className=' grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-8'>
+              {withoutClass?.slice(0, 3)?.map((item) => (
+                <RecommendedClass key={item._id} item={item} />
               ))}
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

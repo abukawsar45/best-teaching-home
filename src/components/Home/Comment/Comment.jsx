@@ -42,7 +42,7 @@ const Comment = () => {
 
 
   return (
-    <div className='bg-lime-700 hover:bg-lime-800 my-6'>
+    <div data-aos='fade-up' className='bg-lime-700 hover:bg-lime-800 my-6'>
       <div className='py-4 md:py-5'>
         <h2 className='text-center text-3xl font-semibold comment-title'>
           Contact Us

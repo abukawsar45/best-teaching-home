@@ -2,14 +2,22 @@ import date from 'date-and-time';
 import { Link } from 'react-router-dom';
 import playstore from '../../assets/playstore.png'
 import ios from '../../assets/ios.png'
+import useProvider from '../../hooks/useProvider';
 const Footer = () => {
   const now = new Date();
+  const { dark } = useProvider();
 
   const formattedDate = date.format(now, 'YYYY');
 
   return (
-    <footer>
-      <div className='flex flex-col md:flex-row justify-around gap-6 p-10 text-neutral-content'>
+    <footer data-aos='fade-up'>
+      <div
+        className={` ${
+          dark
+            ? 'bg-emerald-950 text-white'
+            : 'bg-gradient-to-r from-[#0076CE] to-[#9400D3] text-black'
+        }  flex flex-col md:flex-row justify-around gap-6  p-10 text-neutral-content `}
+      >
         <div className='flex flex-col justify-start'>
           <span className='footer-title'>Best Teching Home</span>
           <Link className=''>About us</Link>
@@ -109,8 +117,8 @@ const Footer = () => {
       <div className='footer footer-center p-4  bg-gray-800 text-white'>
         <div>
           <p>
-            Copyright © {formattedDate} - All right reserved by ACME Industries
-            Ltd
+            Copyright © {formattedDate} - All right reserved by Best Teaching
+            Home.
           </p>
         </div>
       </div>
