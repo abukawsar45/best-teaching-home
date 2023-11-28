@@ -39,13 +39,13 @@ const Login = () => {
 
   return (
     <div data-aos='fade-up' className='pt-16'>
-      <div className='min-h-screen bg-base-200'>
+      <div className='min-h-screen bg-base-'>
         <div className='hero-content flex-col md:flex-row md:justify-center'>
           <div className='mr-8'>
             <h1 className='text-5xl font-bold'>Login Now</h1>
             <p className='py-6'>Provide your information for safety.</p>
           </div>
-          <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100'>
+          <div className='card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-'>
             <div className='text-center text-5xl font-bold mt-2'>Login</div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className='card-body'>

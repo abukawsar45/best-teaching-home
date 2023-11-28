@@ -16,7 +16,7 @@ const Instructor = () => {
         // Process the response data here
       })
       .catch((error) => {
-        ///console.error(error);
+        console.error(error);
         // Handle any errors here
       });
   }, []); // Empty dependency array ensures the effect runs only once on mount

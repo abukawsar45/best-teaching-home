@@ -1,9 +1,26 @@
 
 import { HiOutlineMail } from 'react-icons/hi';
 import CartTitle from '../../../utilities/CartTitle/CartTitle';
+import { useEffect, useState } from 'react';
 
 const HomePopularInstructor = ({ instructor }) => {
   // console.log(instructor)
+  const [backgroundColor, setBackgroundColor] = useState('');
+  
+    const randomColor = () => {
+      const symbols = '0123456789ABCDEF';
+      let color = '#';
+
+      for (let i = 0; i < 6; i++) {
+        color = color + symbols[Math.floor(Math.random() * 16)];
+      }
+      return color;
+  };
+
+    useEffect(() => {
+      setBackgroundColor(randomColor);
+    }, []); 
+  
   return (
     <div data-aos='fade-up' className='my-0 mx-4 md:pb-28  lg:p-0 group'>
       <div className='card w-96 relative'>
@@ -12,7 +29,7 @@ const HomePopularInstructor = ({ instructor }) => {
           <div className='md:hidden'>
             <h5 className='mt-2 text-xl font-semibold'>{instructor?.name} </h5>
           </div>
-          <div className='relative md:flex flex-col justify-start  md:justify-center items-center  h-[200px] md:h-96 lg:h-[400px] w-[200px] md:w-96 lg:w-[400px]  md:mx-auto  z-10 md:bg-pink-800 scale-50 md:group-hover:scale-100  transition-transform origin-center rounded-[50%] duration-500 ease-in-out'>
+          <div style={{backgroundColor:backgroundColor}} className='relative md:flex flex-col justify-start  md:justify-center items-center  h-[200px] md:h-96 lg:h-[400px] w-[200px] md:w-96 lg:w-[400px]  md:mx-auto  z-10 scale-50 md:group-hover:scale-100  transition-transform origin-center rounded-[50%] duration-500 ease-in-out'>
             <div
               className={`absolute text-white  opacity-0 p-2 md:p-6 lg:p-12    md:group-hover:opacity-100 transition-opacity duration-300`}
             >

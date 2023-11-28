@@ -14,7 +14,7 @@ const Main = () => {
     }, []);
   return (
     <div
-      className={`px-2 md:px-4 lg:px-8 max-w-screen-2xl ${dark ? 'bg-slate-900 text-white' : 'bg-slate-200 text-black'} `}
+      className={`px-2 md:px-4 lg:px-8 max-w-screen-2xl mx-auto ${dark ? ' text-white' : 'bg-slate-200 text-black'} `}
     >
       <Header />
       <Outlet />

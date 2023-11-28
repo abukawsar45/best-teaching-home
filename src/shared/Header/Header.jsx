@@ -62,7 +62,7 @@ const Header = () => {
     <div  className=''>
       <div
         className={`navbar max-w-screen-2xl lg:h-16 fixed z-50 ${
-          dark ? 'bg-neutral-800 text-zinc-100' : 'bg-slate-50 text-slate-900'
+          dark ? 'bg-neutral- text-zinc-100' : 'bg-slate-50 text-slate-900'
         } bg-opacity-50 xl:px-10 md:px-5 sm:px-2 px-1 transition-colors duration-300 ease-in   backdrop-blur-sm`}
       >
         <div className='navbar-start'>

@@ -41,7 +41,7 @@ const RecommendedClass = ({ item }) => {
 
         <div className='mt-3 md:mt-6 lg:mt-8 mb-3 md:mb-4 lg:mb-5 '>
           <Link to={`/classDetails/${_id}`}>
-            <button className='w-full py-2 bg- text-white bg-[#0076CE] hover:bg-blue-800 rounded-lg '>
+            <button className='w-full py-2 text-white bg-[#0076CE] hover:bg-blue-800 rounded-lg '>
               View Details
             </button>
           </Link>
